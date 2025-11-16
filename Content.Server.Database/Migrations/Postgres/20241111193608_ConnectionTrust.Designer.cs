@@ -854,13 +854,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
-                    // Exodus-Mindset-Start
-                    b.Property<string>("Mindset")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("mindset");
-                    // Exodus-Mindset-End
-
                     b.Property<int>("PreferenceId")
                         .HasColumnType("integer")
                         .HasColumnName("preference_id");

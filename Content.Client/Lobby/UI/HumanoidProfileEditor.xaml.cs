@@ -106,10 +106,6 @@ namespace Content.Client.Lobby.UI
 
         [ValidatePrototypeId<GuideEntryPrototype>]
         private const string DefaultSpeciesGuidebook = "Species";
-        // Exodus-Mindset-Start
-        [ValidatePrototypeId<GuideEntryPrototype>]
-        private const string MindsetGuidebook = "Mindset";
-        // Exodus-Mindset-End
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
         private ISawmill _sawmill;
@@ -399,18 +395,6 @@ namespace Content.Client.Lobby.UI
             #endregion Eyes
 
             #endregion Appearance
-
-            // Exodus-Mindset-Start
-            #region Mindset
-            MindsetButton.OnItemSelected += args =>
-            {
-                MindsetButton.SelectId(args.Id);
-                SetMindset((Mindset)args.Id);
-            };
-            MindsetInfoButton.OnPressed += OnMindsetInfoButtonPressed;
-
-            #endregion Mindset
-            // Exodus-Mindset-End
 
             #region Jobs
 
@@ -786,7 +770,6 @@ namespace Content.Client.Lobby.UI
             UpdateNameEdit();
             UpdateFlavorTextEdit();
             UpdateSexControls();
-            UpdateMindsetControls(); // Exodus-Mindset
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
@@ -1248,27 +1231,6 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        // Exodus-Mindset-Start
-        private void SetMindset(Mindset newMindset)
-        {
-            Profile = Profile?.WithMindset(newMindset);
-            ReloadPreview();
-        }
-
-        private void OnMindsetInfoButtonPressed(BaseButton.ButtonEventArgs args)
-        {
-            var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-
-            if (_prototypeManager.TryIndex<GuideEntryPrototype>(MindsetGuidebook, out var guideRoot))
-            {
-                var dict = new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry>();
-                dict.Add(MindsetGuidebook, guideRoot);
-                //TODO: Don't close the guidebook if its already open, just go to the correct page
-                guidebookController.OpenGuidebook(dict, includeChildren: true, selected: MindsetGuidebook);
-            }
-        }
-        // Exodus-Mindset-End
-
         private void SetGender(Gender newGender)
         {
             Profile = Profile?.WithGender(newGender);
@@ -1390,24 +1352,6 @@ namespace Content.Client.Lobby.UI
             else
                 SexButton.SelectId((int) sexes[0]);
         }
-
-        // Exodus-Mindset-Start
-        private void UpdateMindsetControls()
-        {
-            if (Profile == null)
-                return;
-
-            MindsetButton.Clear();
-
-            // add button for each mindset
-            foreach (var mindset in Enum.GetValues<Mindset>())
-            {
-                MindsetButton.AddItem(Loc.GetString($"humanoid-profile-editor-mindset-{mindset.ToString().ToLower()}-text"), (int)mindset);
-            }
-
-            MindsetButton.SelectId((int)Profile.Mindset);
-        }
-        // Exodus-Mindset-End
 
         private void UpdateSkinColor()
         {
