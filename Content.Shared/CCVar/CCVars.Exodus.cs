@@ -4,12 +4,6 @@ namespace Content.Shared.CCVar;
 
 public sealed partial class CCVars
 {
-    public static readonly CVarDef<bool> DiscordVerificationEnabled =
-        CVarDef.Create("discord.verification_enabled", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> DiscordBanWebhook =
-        CVarDef.Create("discord.ban_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
     /// <summary>
     ///     If enabled automatically creates preset and map votes when round restarts
     /// </summary>

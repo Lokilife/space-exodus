@@ -89,8 +89,6 @@
         /// </summary>
         EditNotes = 1 << 14,
 
-        Sponsors = 1u << 30, // Exodus-Sponsorship
-
         /// <summary>
         ///     Lets you Massban, on SS14.Admin
         /// </summary>

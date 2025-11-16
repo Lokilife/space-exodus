@@ -12,7 +12,6 @@ using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
-using Content.Server.Exodus.Sponsors;
 using Content.Server.GhostKick;
 using Content.Server.Info;
 using Content.Server.Mapping;
@@ -66,7 +65,6 @@ namespace Content.Server.IoC
             IoCManager.Register<UserDbDataManager>();
             IoCManager.Register<TTSManager>(); // Corvax-TTS
             IoCManager.Register<JoinQueueManager>(); // Corvax-Queue
-            IoCManager.Register<SponsorsManager>(); // Exodus-Sponsorship
             IoCManager.Register<ServerInfoManager>();
             IoCManager.Register<PoissonDiskSampler>();
             IoCManager.Register<DiscordWebhook>();

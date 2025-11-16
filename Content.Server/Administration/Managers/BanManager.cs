@@ -40,7 +40,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
-    [Dependency] private readonly DiscordWebhook _discord = default!; // Exodus-BanWebhook
 
     private ISawmill _sawmill = default!;
 
@@ -193,42 +192,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
-
-        // Exodus-BanWebhook-Start
-        if (!string.IsNullOrWhiteSpace(_cfg.GetCVar(CCVars.DiscordBanWebhook)))
-        {
-            _discord.TryGetWebhook(_cfg.GetCVar(CCVars.DiscordBanWebhook), async (banWebhook) =>
-            {
-                var ban = await _db.GetServerBanAsync(null, target, null, null);
-                var targetUser = target == null ? null : await _db.GetPlayerRecordByUserId(target.Value);
-                var discordMention = targetUser?.DiscordId != null ? $"<@!{targetUser.DiscordId}>" : "null";
-
-                var description = $"> **ID раунда:** `{roundId}`\n\n"
-                + $"> **Нарушитель:** `{targetUsername}` ({discordMention})\n> **Администратор:** `{adminName}`\n\n"
-                + $"> **Выдан:** <t:{DateTimeOffset.Now.ToUnixTimeSeconds()}:R> ({DateTimeOffset.Now})\n\n";
-
-                if (expires != null)
-                {
-                    description += $"**Истекает:** <t:{expires.Value.ToUnixTimeSeconds()}:R> ({expires.Value})\n";
-                }
-                if (reason != string.Empty)
-                {
-                    description += "**Причина:**\n > " + string.Join("\n> ", reason.Trim().Split("\n")) + "\n";
-                }
-
-                var payload = new WebhookPayload()
-                {
-                    Embeds = new() {
-                    new() {
-                        Title = minutes > 0 ? $"Бан #{ban?.Id} на {minutes} минут" : $"Перманентный бан #{ban?.Id}",
-                        Description = description
-                    }
-                    }
-                };
-                await _discord.CreateMessage(banWebhook.ToIdentifier(), payload);
-            });
-        }
-        // Exodus-BanWebhook-End
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }

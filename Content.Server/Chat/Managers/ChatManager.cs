@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server.Exodus.Sponsors; // Exodus-Sponsorship
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
@@ -45,7 +44,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Exodus-Sponsorship
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
 
     public const string AllowedOOCSpecialCharacters = ".,:;-—–\"'!?`(){}[]<>\\/|#%^$~№&@*+="; // Exodus-ChatRestrictions
@@ -308,12 +306,6 @@ internal sealed partial class ChatManager : IChatManager
             colorOverride = prefs.AdminOOCColor;
         }
         // Exodus-WeAreNotOfficials: Privelleges providen by officials should work only on official's servers
-        // Exodus-Sponsorship-Start
-        if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.OOCColor != null)
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", sponsorData.OOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-        }
-        // Exodus-Sponsorship-End
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

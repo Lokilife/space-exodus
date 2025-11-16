@@ -10,7 +10,6 @@ using Content.Server.Corvax.GuideGenerator;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
-using Content.Server.Exodus.Sponsors;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
@@ -115,7 +114,6 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<TTSManager>().Initialize(); // Corvax-TTS
                 IoCManager.Resolve<JoinQueueManager>().Initialize(); // Corvax-Queue
-                IoCManager.Resolve<SponsorsManager>().Initialize(); // Exodus-Sponsorship
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
 

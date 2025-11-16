@@ -26,7 +26,6 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Client.Corvax.JoinQueue;
-using Content.Client.Exodus.Sponsors;
 
 namespace Content.Client.IoC
 {
@@ -56,7 +55,6 @@ namespace Content.Client.IoC
             collection.Register<ExtendedDisconnectInformationManager>();
             collection.Register<JobRequirementsManager>();
             collection.Register<JoinQueueManager>(); // Corvax-Queue
-            collection.Register<SponsorsManager>(); // Exodus-Sponsorship
             collection.Register<DocumentParsingManager>();
             collection.Register<ContentReplayPlaybackManager>();
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
