@@ -31,7 +31,7 @@ public sealed class CritMobActionsSystem : EntitySystem
 
         SubscribeLocalEvent<MobStateActionsComponent, CritSuccumbEvent>(OnSuccumb);
         SubscribeLocalEvent<MobStateActionsComponent, CritFakeDeathEvent>(OnFakeDeath);
-        // Exodus-CritSpeech-LinesRemoval | Remove Crit Last Words Action
+        SubscribeLocalEvent<MobStateActionsComponent, CritLastWordsEvent>(OnLastWords);
     }
 
     private void OnSuccumb(EntityUid uid, MobStateActionsComponent component, CritSuccumbEvent args)
@@ -57,5 +57,29 @@ public sealed class CritMobActionsSystem : EntitySystem
         args.Handled = _deathgasp.Deathgasp(uid);
     }
 
-    // Exodus-CritSpeech-LinesRemoval | Remove Crit Last Words Action
+    private void OnLastWords(EntityUid uid, MobStateActionsComponent component, CritLastWordsEvent args)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("action-name-crit-last-words"), "",
+            (string lastWords) =>
+            {
+                // Intentionally does not check for muteness
+                if (actor.PlayerSession.AttachedEntity != uid
+                    || !_mobState.IsCritical(uid))
+                    return;
+
+                if (lastWords.Length > MaxLastWordsLength)
+                {
+                    lastWords = lastWords.Substring(0, MaxLastWordsLength);
+                }
+                lastWords += "...";
+
+                _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
+                _host.ExecuteCommand(actor.PlayerSession, "ghost");
+            });
+
+        args.Handled = true;
+    }
 }

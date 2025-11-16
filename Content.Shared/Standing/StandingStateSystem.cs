@@ -1,17 +1,10 @@
-using Content.Shared.ActionBlocker;
-using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Standing;
 
@@ -20,9 +13,6 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!; // Exodus-Crawling
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Exodus-Crawling
-    [Dependency] private readonly PullingSystem _pulling = default!; // Exodus-Crawling
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
@@ -30,19 +20,8 @@ public sealed class StandingStateSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<StandingStateComponent, AttemptMobCollideEvent>(OnMobCollide);
         SubscribeLocalEvent<StandingStateComponent, AttemptMobTargetCollideEvent>(OnMobTargetCollide);
-
-        // Exodus-Crawling-Start
-        SubscribeLocalEvent<StandingStateComponent, FootstepsSoundAttemptEvent>(OnFootstepsSound);
-        SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiersEvent);
-        SubscribeLocalEvent<StandingStateComponent, DownDoAfterEvent>(OnDownDoAfterEvent);
-        SubscribeLocalEvent<StandingStateComponent, StandDoAfterEvent>(OnStandDoAfterEvent);
-        SubscribeLocalEvent<StandingStateComponent, PullStartedMessage>(OnPull);
-        SubscribeLocalEvent<StandingStateComponent, PullStoppedMessage>(OnPull);
-        SubscribeLocalEvent<StandingStateComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
-        // Exodus-Crawling-End
     }
 
     private void OnMobTargetCollide(Entity<StandingStateComponent> ent, ref AttemptMobTargetCollideEvent args)
@@ -61,24 +40,6 @@ public sealed class StandingStateSystem : EntitySystem
         }
     }
 
-    // Exodus-Crawling-Start
-    private void OnFootstepsSound(EntityUid uid, StandingStateComponent component, FootstepsSoundAttemptEvent ev)
-    {
-        if (!component.Standing)
-            ev.Cancel();
-    }
-    // Exodus-Crawling-End
-
-    // Exodus-Crawling-Start
-    public bool CanCrawl(EntityUid uid, StandingStateComponent? standingState = null)
-    {
-        if (!Resolve(uid, ref standingState, false))
-            return false;
-
-        return standingState.CanCrawl;
-    }
-    // Exodus-Crawling-End
-
     public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null)
     {
         if (!Resolve(uid, ref standingState, false))
@@ -91,7 +52,6 @@ public sealed class StandingStateSystem : EntitySystem
         bool playSound = true,
         bool dropHeldItems = true,
         bool force = false,
-        bool canStandUp = true, // Exodus-Crawling
         StandingStateComponent? standingState = null,
         AppearanceComponent? appearance = null,
         HandsComponent? hands = null)
@@ -126,13 +86,8 @@ public sealed class StandingStateSystem : EntitySystem
         }
 
         standingState.Standing = false;
-        // Exodus-Crawling-Start
-        standingState.CanStandUp = canStandUp;
         Dirty(uid, standingState);
-        // Exodus-Crawling-End
-
         RaiseLocalEvent(uid, new DownedEvent(), false);
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); // Exodus-Crawling
 
         // Seemed like the best place to put it
         _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Horizontal, appearance);
@@ -189,19 +144,7 @@ public sealed class StandingStateSystem : EntitySystem
 
         standingState.Standing = true;
         Dirty(uid, standingState);
-
-        // Exodus-Crawling-Start
-        // need to refresh movement input for proper handling of standing state update, waddling for example
-        if (TryComp<InputMoverComponent>(uid, out var input))
-        {
-            var moveInputEvent = new MoveInputEvent((uid, input), input.HeldMoveButtons);
-            RaiseLocalEvent(uid, ref moveInputEvent, false);
-        }
-        // Exodus-Crawling-End
-
         RaiseLocalEvent(uid, new StoodEvent(), false);
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); // Exodus-Crawling
-        _actionBlocker.UpdateCanMove(uid); // Exodus-Crawling
 
         _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Vertical, appearance);
 
@@ -217,72 +160,7 @@ public sealed class StandingStateSystem : EntitySystem
 
         return true;
     }
-
-    // Exodus-Crawling-Start
-    public void SetCanStandUp(EntityUid uid, bool canStandUp, StandingStateComponent? standing = null)
-    {
-        if (!Resolve(uid, ref standing, true))
-            return;
-
-        standing.CanStandUp = canStandUp;
-        Dirty(uid, standing);
-    }
-
-    private void OnStandDoAfterEvent(EntityUid uid, StandingStateComponent standing, ref StandDoAfterEvent ev)
-    {
-        if (ev.Cancelled)
-            return;
-
-        Stand(uid, standingState: standing);
-    }
-
-    private void OnDownDoAfterEvent(EntityUid uid, StandingStateComponent standing, ref DownDoAfterEvent ev)
-    {
-        if (ev.Cancelled)
-            return;
-
-        Down(uid, standingState: standing);
-    }
-
-    private void OnRefreshMovementSpeedModifiersEvent(EntityUid uid, StandingStateComponent standing, ref RefreshMovementSpeedModifiersEvent ev)
-    {
-        if (standing.Standing)
-            return;
-
-        ev.ModifySpeed(standing.CrawlingSpeedModifier, standing.CrawlingSpeedModifier);
-    }
-
-    private void OnPull(EntityUid uid, StandingStateComponent standing, ref PullStartedMessage ev)
-    {
-        _actionBlocker.UpdateCanMove(uid);
-    }
-    private void OnPull(EntityUid uid, StandingStateComponent standing, ref PullStoppedMessage ev)
-    {
-        _actionBlocker.UpdateCanMove(uid);
-    }
-
-    private void OnUpdateCanMove(EntityUid uid, StandingStateComponent standing, ref UpdateCanMoveEvent ev)
-    {
-        if (ev.Cancelled)
-            return;
-
-        if (!standing.Standing && _pulling.IsPulled(uid))
-            ev.Cancel();
-    }
-    // Exodus-Crawling-End
 }
-
-// Exodus-Crawling-Start
-[Serializable, NetSerializable]
-public sealed partial class DownDoAfterEvent : SimpleDoAfterEvent
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class StandDoAfterEvent : SimpleDoAfterEvent
-{
-}
-// Exodus-Crawling-End
 
 [ByRefEvent]
 public record struct DropHandItemsEvent();
@@ -333,5 +211,3 @@ public sealed class FellDownEvent : EntityEventArgs
 /// </summary>
 [ByRefEvent]
 public record struct FellDownThrowAttemptEvent(EntityUid Thrower, bool Cancelled = false);
-
-

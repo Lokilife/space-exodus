@@ -63,8 +63,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!; // Exodus-Crawling
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // Exodus-Crawling
 
     // Corvax-TTS-Start: Moved from Server to Shared
     // public const int VoiceRange = 10; // how far voice goes in world units
@@ -260,13 +258,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                // Exodus-CritSpeech-Start
-                if (_mobStateSystem.IsCritical(source))
-                {
-                    SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker);
-                    break;
-                }
-                // Exodus-CritSpeech-End
                 SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker);
                 break;
             case InGameICChatType.Whisper:
@@ -624,11 +615,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
-
-        // Exodus-CritSpeech-Start
-        if (_mobStateSystem.IsCritical(source) && _prototype.TryIndex<DamageTypePrototype>("Asphyxiation", out var asphyxiation))
-            _damageable.TryChangeDamage(source, new(asphyxiation, message.Length * 1.5), true, false);
-        // Exodus-CritSpeech-End
 
         var ev = new EntitySpokeEvent(source, message, originalMessage /* Corvax-TTS */, channel, obfuscatedMessage);
         RaiseLocalEvent(source, ev, true);

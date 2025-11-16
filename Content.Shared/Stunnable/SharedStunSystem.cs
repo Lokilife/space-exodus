@@ -134,10 +134,7 @@ public abstract class SharedStunSystem : EntitySystem
 
     private void OnKnockShutdown(EntityUid uid, KnockedDownComponent component, ComponentShutdown args)
     {
-        // Exodus-Crawling-Start
-        if (!_standingState.CanCrawl(uid))
-            _standingState.Stand(uid);
-        // Exodus-Crawling-End
+        _standingState.Stand(uid);
     }
 
     private void OnStandAttempt(EntityUid uid, KnockedDownComponent component, StandAttemptEvent args)

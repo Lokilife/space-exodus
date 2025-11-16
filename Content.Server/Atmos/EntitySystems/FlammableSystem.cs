@@ -77,7 +77,6 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<FlammableComponent, RejuvenateEvent>(OnRejuvenate);
             SubscribeLocalEvent<FlammableComponent, ResistFireAlertEvent>(OnResistFireAlert);
             Subs.SubscribeWithRelay<FlammableComponent, ExtinguishEvent>(OnExtinguishEvent);
-            SubscribeLocalEvent<FlammableComponent, MoveInputEvent>(OnMoving); // Exodus-Crawling
 
             SubscribeLocalEvent<IgniteOnCollideComponent, StartCollideEvent>(IgniteOnCollide);
             SubscribeLocalEvent<IgniteOnCollideComponent, LandEvent>(OnIgniteLand);
@@ -88,17 +87,6 @@ namespace Content.Server.Atmos.EntitySystems
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
         }
-
-        // Exodus-Crawling-Start
-        private void OnMoving(EntityUid uid, FlammableComponent flammable, MoveInputEvent args)
-        {
-            if (!TryComp<StandingStateComponent>(uid, out var standing) || standing.Standing)
-                return;
-
-            flammable.FireStacks -= 0.1f;
-            UpdateAppearance(uid, flammable);
-        }
-        // Exodus-Crawling-End
 
         private void OnExtinguishEvent(Entity<FlammableComponent> ent, ref ExtinguishEvent args)
         {

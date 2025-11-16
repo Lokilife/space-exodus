@@ -14,7 +14,6 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!; // Exodus-Crawling
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
 
     public override void Initialize()
@@ -82,7 +81,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
         if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
-        SetMouseRotatorComponents(entity, value && !_standing.IsDown(entity)); // Exodus-Crawling
+        SetMouseRotatorComponents(entity, value);
     }
 
     private void SetMouseRotatorComponents(EntityUid uid, bool value)

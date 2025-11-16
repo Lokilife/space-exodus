@@ -1759,7 +1759,7 @@
       Critical:
       - ActionCritSuccumb
       - ActionCritFakeDeath
-      # Exodus-CritSpeech-LinesRemoval | Remove Crit Last Words Action
+      - ActionCritLastWords
   - type: MobThresholds
     thresholds:
       0: Alive

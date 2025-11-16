@@ -42,7 +42,6 @@
   - type: CameraRecoil
   - type: MindContainer
   - type: MovementSpeedModifier
-  - type: TTS # Corvax-TTS
   - type: RequireProjectileTarget
     active: False
 
@@ -97,7 +96,7 @@
       Critical:
       - ActionCritSuccumb
       - ActionCritFakeDeath
-      # Exodus-CritSpeech-LinesRemoval | Remove Crit Last Words Action
+      - ActionCritLastWords
   - type: Deathgasp
   - type: HealthExaminable
     examinableTypes:
