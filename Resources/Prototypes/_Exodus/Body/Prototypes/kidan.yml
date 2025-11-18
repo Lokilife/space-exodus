@@ -8,15 +8,17 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
+        brain: OrganKidanBrain
+        eyes: OrganKidanEyes
     torso:
       part: TorsoKidan
       organs:
-        heart: OrganKidanHeart
-        lungs: OrganHumanLungs
+        heart: OrganKidanVertebralVessel
+        lungs: OrganKidanTrachealTubes
         stomach: OrganKidanStomach
         liver: OrganKidanLiver
         kidneys: OrganKidanKidneys
+        glands: OrganKidanPheromoneGlands
       connections:
       - right arm
       - left arm
