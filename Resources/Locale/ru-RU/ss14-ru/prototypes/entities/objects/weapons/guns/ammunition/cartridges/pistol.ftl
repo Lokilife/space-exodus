@@ -9,5 +9,5 @@ ent-CartridgePistolIncendiary = патрон (.35 авто зажигатель�
 ent-CartridgePistolUranium = патрон (.35 авто урановый)
     .desc = { ent-BaseCartridgePistol.desc }
 ent-CartridgePistolSpent = патрон (.35 авто)
+    .suffix = Использован
     .desc = { ent-BaseCartridgePistol.desc }
-    .suffix = Гильза

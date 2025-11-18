@@ -1,13 +1,13 @@
 // © Space Exodus, An EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/space-exodus/space-station-14/master/CLA.txt
+
 using System.Linq;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Containers;
-using Content.Shared.Maps;
 
 namespace Content.Server.Exodus.RandomTeleport;
 
-public partial class RandomTeleportSystem : EntitySystem
+public sealed partial class RandomTeleportSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
@@ -39,7 +39,7 @@ public partial class RandomTeleportSystem : EntitySystem
                 if (!_mapManager.TryFindGridAt(_xform.ToMapCoordinates(newCoords), out var gridUid, out var grid) || !_mapSystem.TryGetTileRef(gridUid, grid, newCoords, out var tileRef))
                     continue;
 
-                if (tileRef.Tile.IsSpace())
+                if (tileRef.Tile.IsEmpty)
                     continue;
             }
 

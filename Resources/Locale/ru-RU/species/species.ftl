@@ -2,12 +2,16 @@
 
 species-name-human = Человек
 species-name-dwarf = Дворф
-species-name-reptilian = Унатх
+species-name-reptilian = Рептилия
 species-name-slime = Слаймолюд
 species-name-diona = Диона
 species-name-arachnid = Арахнид
-species-name-moth = Ниан
+species-name-moth = Моль
 species-name-skeleton = Скелет
 species-name-vox = Вокс
 species-name-gingerbread = вкуснейшая выпечка
+# species-name-vulpkanin = Вульпканин # Exodus-Vulpkanins
+
+## Misc species things
+
 snail-hurt-by-salt-popup = Солевой раствор жжёт как кислота!

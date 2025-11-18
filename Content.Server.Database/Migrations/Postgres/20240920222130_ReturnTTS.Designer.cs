@@ -733,10 +733,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("last_seen_user_name");
 
-                    b.Property<string>("PremiumOOCColor")
-                        .HasColumnType("text")
-                        .HasColumnName("premium_ooc_color");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
                         .HasColumnName("user_id");

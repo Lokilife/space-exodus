@@ -7,7 +7,7 @@
   defaultSkinTone: "#FF69B4"
   markingLimits: MobKidanMarkingLimits
   dollPrototype: MobKidanDummy
-  skinColoration: Hues
+  skinColoration: KidanChitin
   maleFirstNames: NamesFirstKidan
   femaleFirstNames: NamesFirstKidan
   naming: FirstDashFirst

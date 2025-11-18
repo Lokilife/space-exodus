@@ -98,7 +98,7 @@ barsign-prototype-description-wiggle-room = MoMMI маневрируют в та
 ## The Lightbulb
 
 barsign-prototype-name-the-lightbulb = Лампочка
-barsign-prototype-description-the-lightbulb = Кафе, популярное среди ниан и молей. Однажды его закрыли на неделю после того, как барменша использовала нафталин для обработки своей запасной униформы.
+barsign-prototype-description-the-lightbulb = Кафе, популярное среди молей и мотыльков. Однажды его закрыли на неделю после того, как барменша использовала нафталин для обработки своей запасной униформы.
 
 ## The Loose Goose
 
@@ -120,13 +120,19 @@ barsign-prototype-description-emprah = Нравится и фанатикам, �
 barsign-prototype-name-spacebucks = Спейсбакс
 barsign-prototype-description-spacebucks = От них нельзя скрыться, даже в космосе, и даже после того, как некоторые стали называть их "срубли".
 
-## EmpBarSign
+## Maltroach
 
 barsign-prototype-name-maltroach = Пивная Моль
-barsign-prototype-description-maltroach = Чирик!
-barsign-prototype-description-empbarsign = Что-то пошло совсем не так.
+barsign-prototype-description-maltroach = Сквик!
+
+## Whiskey Echoes
+
 barsign-prototype-name-whiskeyechoes = Виски Эхо
-barsign-prototype-description-whiskeyechoes = Элитный бар для элитных операторов... Подождите, это же станция НТ. Как тут оказалась эта вывеска?
+barsign-prototype-description-whiskeyechoes = Элитный бар для элитных опер... Подождите, это же станция Nanotrasen. Почему эта вывеска в базе данных?
+
+## EmpBarSign
+
+barsign-prototype-description-empbarsign = Что-то пошло совсем не так.
 
 ## SignOff
 

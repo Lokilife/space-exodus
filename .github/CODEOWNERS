@@ -3,8 +3,5 @@
 # Ping for all PRs
 * @Lokilife
 
-# Ping for all PRs that include translations/editing fluent strings
-*.ftl @Jidort
-
 # Sprites
 /Resources/Textures/** @Askolot

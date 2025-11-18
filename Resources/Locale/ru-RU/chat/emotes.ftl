@@ -32,6 +32,13 @@ chat-emote-name-monkeyscreeches = Обезьяньи крики
 chat-emote-name-robotbeep = Робот
 chat-emote-name-yawn = Зевать
 chat-emote-name-snore = Храпеть
+# Exodus-Vulpkanins-Start
+# chat-emote-name-bark = Лаять
+# chat-emote-name-snarl = Скалиться
+# chat-emote-name-whine = Скулить
+# chat-emote-name-howl = Выть
+# chat-emote-name-growl = Рычать
+# Exodus-Vulpkanins-End
 # Сообщение
 chat-emote-msg-scream = кричит!
 chat-emote-msg-laugh = смеётся.
@@ -51,6 +58,7 @@ chat-emote-msg-salute = салютует.
 chat-emote-msg-gasp = задыхается.
 chat-emote-msg-deathgasp = замирает и бездыханно оседает, { POSS-ADJ($entity) } глаза мертвы и безжизненны...
 chat-emote-msg-deathgasp-monkey = издаёт слабый взвизг, оседает и замирает...
+chat-emote-msg-deathgasp-scurret = издаёт последний "ва" и замирает...
 chat-emote-msg-buzz = жужжит!
 chat-emote-msg-weh = вехает!
 chat-emote-msg-hew = хевает!
@@ -66,3 +74,10 @@ chat-emote-msg-cathisses = шипит.
 chat-emote-msg-monkeyscreeches = кричит.
 chat-emote-msg-yawn = зевает.
 chat-emote-msg-snore = храпит.
+# Exodus-Vulpkanins-Start
+# chat-emote-msg-bark = лает.
+# chat-emote-msg-snarl = скалится.
+# chat-emote-msg-whine = скулит.
+# chat-emote-msg-howl = воет.
+# chat-emote-msg-growl = рычит.
+# Exodus-Vulpkanins-End

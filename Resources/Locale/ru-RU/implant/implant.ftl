@@ -4,7 +4,7 @@ implanter-component-implanting-target = { $user } пытается что-то �
 implanter-component-implant-failed = { $implant } нельзя имплантировать в { $target }!
 implanter-draw-failed-permanent = { $implant } вросся в { $target } и не может быть удалён!
 implanter-draw-failed = Вы пытаетесь удалить имплант, но ничего не находите.
-implanter-draw-failed-catastrophically = Имплантер ничего не находит и происходит критический сбой, случайно занося чужой генетический материал под кожу { $user }!
+implanter-draw-failed-catastrophically = Имплантер ничего не находит и катастрофически выходит из строя, впивая генетический материал в руку { $user }!
 implanter-component-implant-already = { $target } уже имеет { $implant }!
 
 ## UI
@@ -20,15 +20,4 @@ implanter-label-inject = [color=green]{ $implantName }[/color]
     Режим: [color=white]{ $modeString }[/color]
 implanter-label-draw = [color=red]{ $implantName }[/color]
     Режим: [color=white]{ $modeString }[/color]
-implanter-label = [color=green]{ $implantName }[/color]
-    Режим: [color=white]{ $modeString }[/color]
 implanter-contained-implant-text = [color=green]{ $desc }[/color]
-
-## Implant Popups
-
-scramble-implant-activated-popup = Ваша внешность преображается и меняется!
-
-## Implant Messages
-
-deathrattle-implant-dead-message = Зафиксирована смерть { $user } { $position }.
-deathrattle-implant-critical-message = Жизненные показатели { $user } критические, требуется немедленная помощь { $position }.

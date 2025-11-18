@@ -577,7 +577,7 @@
       amount: 1
 #Exodus ChemicalEffects start
   effects:
-    - !type:EmpReactionEffect
+    - !type:Emp
       rangePerUnit: 1
       maxRange: 6
       energyConsumption: 12500

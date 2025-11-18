@@ -114,8 +114,8 @@
         damage: 5
       behaviors:
         - !type:TriggerBehavior
-  - type: SoundOnTrigger
-    removeOnTrigger: true
+  - type: EmitSoundOnTrigger
+    triggerOnce: true
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
       volume: 5
@@ -143,7 +143,7 @@
         radius: 6
         softness: 1
         offset: "0, 0"
-      - type: SoundOnTrigger
+      - type: EmitSoundOnTrigger
         sound:
           path: /Audio/Effects/Grenades/Supermatter/supermatter_end.ogg
           params:
@@ -567,7 +567,7 @@
 #Exodus-AnomalyCore-Begin
   - type: EntityEffectsOnCollide
     effects:
-      - !type:RandomTeleport
+      - !type:RandomTeleportEffect
         range: 20
     deleteAfterCollide: true
     onlyForMob: true
@@ -609,23 +609,18 @@
   components:
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/electric_core.rsi
-#  - type: PointLight
-#    radius: 5.0
-#    energy: 2.0
-#    color: "#ffffaa"
-#    castShadows: false
-#Exodus-AnomalyCore-Begin
-  - type: Electrified
-    requirePower: false
-  - type: EntityEffectsOnCollide
-    effects:
-      - !type:Paralyze
-        paralyzeTime: 6.0
   - type: PointLight
     radius: 5.0
     energy: 3.0
     color: "#ffffaa"
     castShadows: false
+# Exodus-AnomalyCore-Begin
+  - type: Electrified
+    requirePower: false
+  - type: EntityEffectsOnCollide
+    effects:
+      - !type:ModifyParalysis
+        time: 6.0
   - type: Destructible
     thresholds:
     - trigger:
@@ -635,7 +630,7 @@
       - !type:SpillBehavior { }
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-#Exodus-AnomalyCore-End
+# Exodus-AnomalyCore-End
 
 - type: entity
   parent: BaseAnomalyCore
@@ -817,8 +812,8 @@
         damage: 5
       behaviors:
         - !type:TriggerBehavior
-  - type: SoundOnTrigger
-    removeOnTrigger: true
+  - type: EmitSoundOnTrigger
+    triggerOnce: true
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
       volume: 5
@@ -846,7 +841,7 @@
         radius: 6
         softness: 1
         offset: "0, 0"
-      - type: SoundOnTrigger
+      - type: EmitSoundOnTrigger
         sound:
           path: /Audio/Effects/Grenades/Supermatter/supermatter_end.ogg
           params:
@@ -1054,7 +1049,7 @@
 #Exodus-AnomalyCore-Begin
   - type: EntityEffectsOnCollide
     effects:
-      - !type:RandomTeleport
+    - !type:RandomTeleportEffect
     deleteAfterCollide: true
     onlyForMob: true
   - type: DamageOnLand
@@ -1095,21 +1090,16 @@
   components:
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/electric_core.rsi
-#  - type: PointLight
-#    radius: 1.5
-#    energy: 2.0
-#   color: "#ffffaa"
-#   castShadows: false
-#Exodus-AnomalyCore-Begin
-  - type: EntityEffectsOnCollide
-    effects:
-      - !type:Paralyze
-        paralyzeTime: 4.0
   - type: PointLight
     radius: 3.0
     energy: 2.0
     color: "#ffffaa"
     castShadows: false
+# Exodus-AnomalyCore-Start
+  - type: EntityEffectsOnCollide
+    effects:
+    - !type:ModifyParalysis
+      time: 4.0
   - type: Electrified
     requirePower: false
   - type: Destructible
@@ -1121,7 +1111,7 @@
       - !type:SpillBehavior { }
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-#Exodus-AnomalyCore-End
+# Exodus-AnomalyCore-End
 
 - type: entity
   parent: BaseAnomalyInertCore

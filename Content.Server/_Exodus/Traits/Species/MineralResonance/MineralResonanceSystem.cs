@@ -3,6 +3,7 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
 using Content.Server.Exodus.Mining;
+using Content.Shared.Chat;
 using Content.Shared.Exodus.Traits.Species.MineralResonance;
 
 namespace Contetn.Server.Exodus.Traits.Species.MineralResonance;

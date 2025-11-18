@@ -3,12 +3,11 @@ gun-fire-rate-examine = Скорострельность [color={ $color }]{ $fi
 gun-selector-verb = Изменить на { $mode }
 gun-selected-mode = Выбран { $mode }
 gun-disabled = Вы не можете использовать оружие!
-gun-clumsy = Оружие взрывается вам в лицо!
 gun-set-fire-mode = Выбран режим { $mode }
 gun-magazine-whitelist-fail = Это не помещается в оружие!
 gun-magazine-fired-empty = Нет патронов!
 # SelectiveFire
-gun-SemiAuto = одиночные
+gun-SemiAuto = полуавто
 gun-Burst = очередь
 gun-FullAuto = авто
 # BallisticAmmoProvider

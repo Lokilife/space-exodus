@@ -1,3 +1,2 @@
-ent-VGRoidInteriorRoomMarker = маркер интерьера
+ent-VGRoidInteriorRoomMarker = маркер интерьера VGRoid
     .desc = { ent-BaseRoomMarker.desc }
-    .suffix = Планетоид

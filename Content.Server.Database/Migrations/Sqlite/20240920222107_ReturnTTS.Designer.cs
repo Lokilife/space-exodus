@@ -691,10 +691,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("last_seen_user_name");
 
-                    b.Property<string>("PremiumOOCColor")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("premium_ooc_color");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT")
                         .HasColumnName("user_id");

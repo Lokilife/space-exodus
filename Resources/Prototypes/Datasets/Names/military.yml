@@ -2,25 +2,16 @@
   id: NamesMilitaryFirstLeader
   values:
     prefix: names-military-leader-first-dataset-
-    count: 4 # Exodus-MRP-Edit
+    count: 5 # RU-Localization
 
 - type: localizedDataset
   id: NamesMilitaryFirst
   values:
     prefix: names-military-first-dataset-
-    count: 5 # Corvax-MRP-Edit
+    count: 5 # RU-Localization
 
 - type: localizedDataset
   id: NamesMilitaryLast
   values:
     prefix: names-military-last-dataset-
-    count: 43 # Corvax-MRP-Edit
-
-# Exodus-CentcommCommander-start
-- type: dataset
-  id: NamesFirstMilitaryHighLeader
-  values:
-  - Полковник
-  - Подполковник
-  - Майор
-# Exodus-CentcommCommander-end
+    count: 43 # RU-Localization

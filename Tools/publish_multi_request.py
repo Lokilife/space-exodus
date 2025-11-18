@@ -13,8 +13,8 @@ FORK_ID = os.environ['FORK_ID']
 RELEASE_DIR = "release"
 
 #
-# CONFIGURATION PARAMETERS
-# Forks should change these to publish to their own infrastructure.
+#  CONFIGURATION PARAMETERS
+#  Forks should change these to publish to their own infrastructure.
 #
 ROBUST_CDN_URL = os.environ['ROBUST_CDN_URL']
 

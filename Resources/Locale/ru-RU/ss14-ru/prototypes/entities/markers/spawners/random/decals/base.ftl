@@ -1,2 +1,2 @@
-ent-DecalSpawnerBase = спавнер декали
+ent-DecalSpawnerBase = спавнер декаль
     .desc = { ent-MarkerBase.desc }

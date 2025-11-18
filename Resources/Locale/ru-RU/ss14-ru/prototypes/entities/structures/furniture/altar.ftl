@@ -1,6 +1,6 @@
 ent-AltarBase = алтарь
     .desc = Алтарь богов.
-ent-AltarNanotrasen = алтарь NanoTrasen
+ent-AltarNanotrasen = алтарь Nanotrasen
     .desc = { ent-AltarBase.desc }
 ent-AltarChaos = алтарь хаоса
     .desc = { ent-AltarNanotrasen.desc }
@@ -8,7 +8,7 @@ ent-AltarDruid = алтарь друидов
     .desc = { ent-AltarNanotrasen.desc }
 ent-AltarToolbox = алтарь ящика для инструментов
     .desc = { ent-AltarNanotrasen.desc }
-ent-AltarSpaceChristian = Космо-Христианский алтарь
+ent-AltarSpaceChristian = космо-Христианский алтарь
     .desc = { ent-AltarNanotrasen.desc }
 ent-AltarSatana = сатанинский алтарь
     .desc = { ent-AltarNanotrasen.desc }

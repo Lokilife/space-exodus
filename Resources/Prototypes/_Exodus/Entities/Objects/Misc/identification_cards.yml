@@ -6,7 +6,11 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: idblueshieldofficer
+    - state: stripe_bottom
+      color: &color-blueshield-bottom "#1b67a5"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+      state: BlueshieldOfficer
   - type: PresetIdCard
     job: BlueshieldOfficer
 
@@ -19,9 +23,14 @@
     job: DSCommander
   - type: Sprite
     layers:
-    - state: syndie
-    - state: idchiefmedicalofficer
-    - state: iddeathsquad
+    - state: black
+    - state: stripe_top
+      color: &color-medical-top "#68aed6"
+    - state: stripe_bottom
+      color: &color-medical-bottom "#325f7a"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: DeathSquad
 
 - type: entity
   parent: IDCardDSCommander

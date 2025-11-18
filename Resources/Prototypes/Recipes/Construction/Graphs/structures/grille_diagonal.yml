@@ -6,6 +6,9 @@
       edges:
         - to: grilleDiagonal
           completed:
+            - !type:AdminLog
+              message: "Construction"
+              impact: High
            # Exodus-Construction-Rotate-Fix-Start
             - !type:SnapToGrid { }
           steps:
@@ -16,6 +19,9 @@
 
         - to: clockworkGrilleDiagonal
           completed:
+            - !type:AdminLog
+              message: "Construction"
+              impact: High
            # Exodus-Construction-Rotate-Fix-Start
             - !type:SnapToGrid { }
            # Exodus-Construction-Rotate-Fix-End

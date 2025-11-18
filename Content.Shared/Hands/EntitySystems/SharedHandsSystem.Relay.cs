@@ -1,5 +1,6 @@
 using Content.Shared.Atmos;
 using Content.Shared.Camera;
+using Content.Shared.Cuffs;
 using Content.Shared.Hands.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Projectiles;
@@ -23,8 +24,9 @@ public abstract partial class SharedHandsSystem
 
         SubscribeLocalEvent<HandsComponent, WieldAttemptEvent>(RefRelayEvent);
         SubscribeLocalEvent<HandsComponent, UnwieldAttemptEvent>(RefRelayEvent);
+        SubscribeLocalEvent<HandsComponent, TargetHandcuffedEvent>(RefRelayEvent);
 
-        SubscribeLocalEvent<HandsComponent, RefreshFrictionModifiersEvent>(RefRelayEvent);//Exodus-AnomalyCore
+        SubscribeLocalEvent<HandsComponent, RefreshFrictionModifiersEvent>(RefRelayEvent); //Exodus-AnomalyCore
     }
 
     private void RelayEvent<T>(Entity<HandsComponent> entity, ref T args) where T : EntityEventArgs
@@ -42,7 +44,7 @@ public abstract partial class SharedHandsSystem
     {
         var ev = new HeldRelayedEvent<T>(args);
 
-        foreach (var held in EnumerateHeld(entity, entity.Comp))
+        foreach (var held in EnumerateHeld(entity.AsNullable()))
         {
             RaiseLocalEvent(held, ref ev);
         }

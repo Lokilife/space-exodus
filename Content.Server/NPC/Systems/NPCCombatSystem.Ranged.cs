@@ -3,7 +3,6 @@ using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Content.Shared.NPC.Systems; // Exodus-TurretsImprovement
 using Content.Shared.Physics; // Exodus-TurretsImprovement
-using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
@@ -208,7 +207,7 @@ public sealed partial class NPCCombatSystem
                 return;
             }
 
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, /* Exodus-NPCsAbilityToTargetEnemy-Start */ comp.Target /* Exodus-NPCsAbilityToTargetEnemy-End */);
+            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
         }
     }
 

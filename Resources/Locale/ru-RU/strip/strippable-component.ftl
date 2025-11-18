@@ -14,7 +14,7 @@ strippable-component-alert-owner-insert-hand = { CAPITALIZE($user) } вклад�
 strippable-component-alert-owner-interact = { CAPITALIZE($user) } возится с вашим { $item }!
 # StripVerb
 strip-verb-get-data-text = Обыскать
-strip-all-verb-get-data-text = Раздеть
+strip-all-verb-get-data-text = Снять всё
 
 ## UI
 

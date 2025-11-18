@@ -1,9 +1,0 @@
-ent-LockerScientistResprite = Scientist closet
-    .suffix = Resprite
-    .desc = { ent-LockerScientist.desc }
-ent-LockerScienceSuitFilledResprite = Scientist closet
-    .suffix = Filled, Hardsuit, Resprite
-    .desc = { ent-LockerScientistResprite.desc }
-ent-LockerScienceSuitFilled = Scientist closet
-    .suffix = Filled, Hardsuit
-    .desc = { ent-LockerScientist.desc }

@@ -5,17 +5,9 @@
   components:
     - type: Sprite
       layers:
-        - state: silver
-        - state: idiaa
+      - state: silver
+      - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+        offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+        state: IAA
     - type: PresetIdCard
       job: IAA
-
-- type: entity
-  parent: IDCardStandard
-  id: PilotIDCard
-  name: pilot ID card
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idpilot

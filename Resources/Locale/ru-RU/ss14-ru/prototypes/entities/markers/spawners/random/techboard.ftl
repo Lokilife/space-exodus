@@ -1,2 +1,2 @@
-ent-RandomBoard = случайный спавнер печатная плата
+ent-RandomBoard = случайный спавнер машинная плата
     .desc = { ent-MarkerBase.desc }

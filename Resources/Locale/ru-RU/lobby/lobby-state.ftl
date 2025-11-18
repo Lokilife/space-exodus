@@ -31,4 +31,4 @@ lobby-state-playtime-comment-normal =
     }. Не забывайте отдыхать!
 lobby-state-playtime-comment-concerning = Сегодня вы наиграли { $hours } часов. Пожалуйста, отдохните.
 lobby-state-playtime-comment-grasstouchless = { $hours } часов. Подумайте о выходе из игры, чтобы заняться своими делами.
-lobby-state-playtime-comment-selfdestructive = { $hours } часов. Серьёзно? Потрогайте траву!
+lobby-state-playtime-comment-selfdestructive = { $hours } часов. Серьёзно?

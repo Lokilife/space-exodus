@@ -1,10 +1,10 @@
-using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using System.Text.Json.Serialization;
 using Content.Shared.EntityEffects;
 
 namespace Content.Server.Corvax.GuideGenerator;
-public sealed class ReagentEffectEntry
+
+public sealed partial class ReagentEffectEntry
 {
     [JsonPropertyName("id")]
     public string Id { get; }
@@ -18,7 +18,7 @@ public sealed class ReagentEffectEntry
         var entSys = IoCManager.Resolve<IEntitySystemManager>();
 
         Id = proto.GetType().Name;
-        Description = GuidebookEffectDescriptionToWeb(proto.GuidebookEffectDescription(prototype, entSys) ?? "");
+        Description = GuidebookEffectDescriptionToWeb(proto.EntityEffectGuidebookText(prototype, entSys) ?? "");
     }
 
     private string GuidebookEffectDescriptionToWeb(string guideBookText)

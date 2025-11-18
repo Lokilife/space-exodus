@@ -9,4 +9,3 @@ admin-player-actions-window-admin-logs = Админ логи
 admin-player-actions-window-admin-notes = Админ заметки
 admin-player-actions-window-admin-fax = Админ факс
 admin-player-actions-window-admin-chat = Админ чат
-admin-player-actions-window-audio-panel = Аудио панель

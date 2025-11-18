@@ -89,15 +89,15 @@
     effects:
     - !type:Emote
       conditions:
-        - !type:Temperature
-          max: 283
+      - !type:TemperatureCondition
+        max: 283
       emote: Yawn
       showInChat: true
       probability: 0.2
     - !type:GenericStatusEffect
       conditions:
-        - !type:Temperature
-          max: 283
+      - !type:TemperatureCondition
+        max: 283
       key: Drowsiness
       component: Drowsiness
       time: 4
@@ -114,7 +114,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [PestKiller]
       methods: [Touch, Ingestion]
       effects:

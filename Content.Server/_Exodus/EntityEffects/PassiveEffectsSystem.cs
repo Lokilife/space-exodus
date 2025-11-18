@@ -4,6 +4,8 @@ namespace Content.Server.Exodus.EntityEffects;
 
 public sealed partial class PassiveEffectsSystem : EntitySystem
 {
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<PassiveEffectsComponent>();
@@ -19,8 +21,7 @@ public sealed partial class PassiveEffectsSystem : EntitySystem
 
             foreach (var effect in comp.Effects)
             {
-                if (effect.ShouldApply(new(uid, EntityManager)))
-                    effect.Effect(new(uid, EntityManager));
+                _entityEffects.TryApplyEffect(uid, effect);
             }
         }
     }

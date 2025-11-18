@@ -10,6 +10,7 @@ using Content.Shared.IdentityManagement;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Trigger;
 
 
 namespace Content.Server.Exodus.Implants

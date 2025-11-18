@@ -51,11 +51,8 @@ ent-BoxEncryptionKeySecurity = коробка ключей шифрования 
     .desc = { ent-BoxEncryptionKeyPassenger.desc }
 ent-BoxEncryptionKeyService = коробка ключей шифрования сервисного отдела
     .desc = { ent-BoxEncryptionKeyPassenger.desc }
-# Corvax-HiddenDesc-Start
-ent-BoxEncryptionKeySyndie = коробка ключей шифрования пассажиров
-    .desc = { ent-BoxEncryptionKeyPassenger.desc }
-    .suffix = коробка ключей шифрования Синдиката
-# Corvax-HiddenDesc-End
+ent-BoxEncryptionKeySyndie = коробка ключей шифрования Синдиката
+    .desc = Два ключа шифрования синдиката по цене одного. Для простоты использования уменьшена.
 ent-BoxLeadLined = освинцованная коробка
     .desc = Эта коробка препятствует распространению радиации.
     .suffix = DEBUG
@@ -67,5 +64,5 @@ ent-BoxDarts = коробка дротиков
     .desc = Коробка, наполненная разноцветными дротиками.
 ent-BoxEnvelope = коробка конвертов
     .desc = Коробка, наполненная конвертами.
-ent-BoxUtensil = ящик столовых приборов
-    .desc = Коробка, наполненная ложками и вилками.
+ent-BoxUtensil = коробка столовых приборов
+    .desc = Коробка, наполненная вилками и ложками.
