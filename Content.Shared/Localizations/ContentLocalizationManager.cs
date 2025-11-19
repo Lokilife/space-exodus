@@ -55,7 +55,18 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
-            _loc.AddFunction(cultureEn, "NATURALPERCENT", FormatNaturalPercent); // Exodus | Idk why, I just wanna silence the error
+            // Exodus-Start | Idk why, I just wanna silence the error
+            _loc.AddFunction(culture, "PRESSURE", FormatPressure);
+            _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
+            _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);
+            _loc.AddFunction(culture, "ENERGYWATTHOURS", FormatEnergyWattHours);
+            _loc.AddFunction(culture, "UNITS", FormatUnits);
+            _loc.AddFunction(culture, "TOSTRING", args => FormatToString(culture, args));
+            _loc.AddFunction(culture, "LOC", FormatLoc);
+            _loc.AddFunction(culture, "NATURALFIXED", FormatNaturalFixed);
+            _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
+            _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
+            // Exodus-End
         }
 
         private ILocValue FormatMany(LocArgs args)
