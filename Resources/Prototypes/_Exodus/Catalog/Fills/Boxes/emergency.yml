@@ -68,7 +68,7 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: MechanicalInjectorEpinephrine
-    - id: FoodBreadBaguette
+    # - id: FoodBreadBaguette # can't fit cuz of mech injector, sadly
     - id: DrinkWaterBottleFull
 
 - type: entity
