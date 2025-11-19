@@ -773,3 +773,6 @@ WarpPointBombing: null
 ToyGriffin: ToyFigurineGriffin
 ToyOwlman: ToyFigurineOwlman
 ToySkeleton: ToyFigurineSkeleton
+
+# Exodus Scrap Armor Removal 2025-11-19
+WeldedSteelApronBase: null
