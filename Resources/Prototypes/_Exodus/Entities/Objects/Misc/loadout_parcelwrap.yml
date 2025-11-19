@@ -1105,12 +1105,12 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: WrappedParcel
-  id: WrappedParcelClothingNeckHeadphones
+  id: WrappedParcelClothingMultipleHeadphones
   components:
   - type: ItemSlots
     slots:
       contents:
-        startingItem: ClothingNeckHeadphones
+        startingItem: ClothingMultipleHeadphones
         disableEject: true
         locked: true
 

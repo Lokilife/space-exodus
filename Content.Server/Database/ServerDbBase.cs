@@ -28,7 +28,6 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
@@ -265,8 +264,6 @@ namespace Content.Server.Database
                 loadouts[role.RoleName] = loadout;
             }
 
-            Enum.TryParse<Mindset>(profile.Mindset, true, out var mindset); // Exodus-Mindset
-
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
@@ -274,7 +271,6 @@ namespace Content.Server.Database
                 voice, // Corvax-TTS
                 profile.Age,
                 sex,
-                mindset, // Exodus-Mindset
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -312,7 +308,6 @@ namespace Content.Server.Database
             profile.Voice = humanoid.Voice; // Corvax-TTS
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
-            profile.Mindset = humanoid.Mindset.ToString(); // Exodus-Mindset
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
@@ -699,18 +694,6 @@ namespace Content.Server.Database
             return record == null ? null : MakePlayerRecord(record);
         }
 
-        // Exodus-Discord-Start
-        public async Task<PlayerRecord?> GetPlayerRecordByDiscordId(ulong id, CancellationToken cancel)
-        {
-            await using var db = await GetDb();
-
-            var record = await db.DbContext.Player
-                .SingleOrDefaultAsync(p => p.DiscordId == id, cancel);
-
-            return record == null ? null : MakePlayerRecord(record);
-        }
-        // Exodus-Discord-End
-
         protected async Task<bool> PlayerRecordExists(DbGuard db, NetUserId userId)
         {
             return await db.DbContext.Player.AnyAsync(p => p.UserId == userId);
@@ -728,10 +711,7 @@ namespace Content.Server.Database
                 player.LastSeenUserName,
                 new DateTimeOffset(NormalizeDatabaseTime(player.LastSeenTime)),
                 player.LastSeenAddress,
-                player.LastSeenHWId,
-                player.DiscordId, // Exodus-Discord
-                player.IsPremium, // Exodus-Sponsorship
-                player.PremiumOOCColor // Exodus-Sponsorship
+                player.LastSeenHWId
             );
         }
 
@@ -1221,138 +1201,6 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
-        // Exodus-Discord-Start
-        #region Discord
-
-        public async Task<string?> GenerateDiscordVerificationCode(NetUserId player)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
-
-            if (dbPlayer == null)
-            {
-                return null;
-            }
-
-            // Why do you would generate verification code for a user with already linked account?
-            if (dbPlayer.DiscordId != null)
-            {
-                return null;
-            }
-
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Robust.Shared.Random.RobustRandom();
-            var code = new string(Enumerable.Repeat(chars, 12)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-
-            // if somehow with chance like 1 in 36^12 (17 zeros after the point) you'll get the same code
-            // as with the other player (which shouldn't be verified too) we'll handle this
-            if (await VerifyDiscordVerificationCode(code) != null)
-            {
-                return await GenerateDiscordVerificationCode(player);
-            }
-
-            dbPlayer.DiscordVerificationCode = code;
-            await db.DbContext.SaveChangesAsync();
-
-            return code;
-        }
-
-        public async Task<Guid?> VerifyDiscordVerificationCode(string code)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.DiscordVerificationCode == code).SingleOrDefaultAsync();
-
-            return dbPlayer?.UserId;
-        }
-
-        public async Task<bool> LinkDiscord(NetUserId player, ulong discordId)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
-
-            if (dbPlayer == null)
-            {
-                return false;
-            }
-
-            dbPlayer.DiscordId = discordId;
-            dbPlayer.DiscordVerificationCode = null;
-            await db.DbContext.SaveChangesAsync();
-
-            return true;
-        }
-
-        #endregion
-        // Exodus-Discord-End
-
-        // Exodus-Sponsorship-Start
-        #region Sponsorship
-        public async Task<bool> PromoteSponsor(NetUserId player)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
-
-            if (dbPlayer == null)
-            {
-                return false;
-            }
-
-            dbPlayer.IsPremium = true;
-            await db.DbContext.SaveChangesAsync();
-
-            return true;
-        }
-
-        public async Task<bool> UnpromoteSponsor(NetUserId player)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
-
-            if (dbPlayer == null)
-            {
-                return false;
-            }
-
-            if (!dbPlayer.IsPremium)
-            {
-                return false;
-            }
-
-            dbPlayer.IsPremium = false;
-            await db.DbContext.SaveChangesAsync();
-
-            return true;
-        }
-
-        public async Task SetPremiumOOCColor(NetUserId player, string color)
-        {
-            await using var db = await GetDb();
-
-            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
-
-            if (dbPlayer == null)
-            {
-                return;
-            }
-
-            if (!dbPlayer.IsPremium)
-            {
-                return;
-            }
-
-            dbPlayer.PremiumOOCColor = color;
-            await db.DbContext.SaveChangesAsync();
-        }
-
-        #endregion
-        // Exodus-Sponsorship-End
-
         #region Uploaded Resources Logs
 
         public async Task AddUploadedResourceLogAsync(NetUserId user, DateTimeOffset date, string path, byte[] data)
@@ -1567,7 +1415,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 ban.LastEditedAt,
                 ban.ExpirationTime,
                 ban.Hidden,
-                new[] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
                 MakePlayerRecord(unbanningAdmin),
                 ban.Unban?.UnbanTime);
         }
@@ -1867,7 +1715,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     NormalizeDatabaseTime(firstBan.LastEditedAt),
                     NormalizeDatabaseTime(firstBan.ExpirationTime),
                     firstBan.Hidden,
-                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.JobPrefix, null)).ToArray(),
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
                     MakePlayerRecord(unbanningAdmin),
                     NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
             }

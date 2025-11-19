@@ -25,7 +25,7 @@
     - yells
     - yelled
     - yelling
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - кричит
     - кричит.
     - кричит!
@@ -35,7 +35,7 @@
     - визжит
     - визжит.
     - визжит!
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Laugh
@@ -65,7 +65,7 @@
     - chortle
     - chortles
     - chortling
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - смеется
     - смеётся
     - хохочет
@@ -73,7 +73,7 @@
     - хихикнул
     - хихикнула
     - ржёт
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Honk
@@ -92,9 +92,9 @@
     - honks
     - honked
     - honking
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - хонк
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Sigh
@@ -112,11 +112,11 @@
     - sigh
     - sighs
     - sighed
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - вздыхает
     - вздохнул
     - вздохнула
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Whistle
@@ -134,10 +134,10 @@
     - whistle
     - whistles
     - whistleblowing
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - свистит
     - свистнул
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Crying
@@ -158,10 +158,10 @@
     - sob
     - sobs
     - sobbing
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - плачет
     - рыдает
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Squish
@@ -180,9 +180,9 @@
     - squish
     - squishing
     - squishes
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - хлюпает
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Chitter
@@ -201,9 +201,9 @@
    - chitter
    - chitters
    - chittered
-   # Corvax-Localization-Start
+   # RU-Localization-Start
    - стрекочет
-   # Corvax-Localization-End
+   # RU-Localization-End
 
 - type: emote
   id: Squeak
@@ -222,9 +222,9 @@
    - squeak
    - squeaks
    - squeaked
-   # Corvax-Localization-Start
+   # RU-Localization-Start
    - пищит
-   # Corvax-Localization-End
+   # RU-Localization-End
 
 - type: emote
   id: Click
@@ -242,10 +242,103 @@
   chatTriggers:
    - click
    - clicks
-   # Corvax-Localization-Start
+   # RU-Localization-Start
    - клац
    - клацает
-   # Corvax-Localization-End
+   # RU-Localization-End
+
+# Exodus-Vulpkanins-Start
+# # Vulpkanin
+# - type: emote
+#   id: Bark
+#   name: chat-emote-name-bark
+#   category: Vocal
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: ["chat-emote-msg-bark"]
+#   chatTriggers:
+#   - bark
+#   - barks
+#   - barked
+#   - barking
+
+# - type: emote
+#   id: Snarl
+#   name: chat-emote-name-snarl
+#   category: Vocal
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: ["chat-emote-msg-snarl"]
+#   chatTriggers:
+#   - snarl
+#   - snarls
+#   - snarled
+#   - snarling
+
+# - type: emote
+#   id: Whine
+#   name: chat-emote-name-whine
+#   category: Vocal
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: ["chat-emote-msg-whine"]
+#   chatTriggers:
+#   - whine
+#   - whines
+#   - whined
+#   - whining
+
+# - type: emote
+#   id: Howl
+#   name: chat-emote-name-howl
+#   category: Vocal
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: ["chat-emote-msg-howl"]
+#   chatTriggers:
+#   - howl
+#   - howls
+#   - howling
+#   - howled
+
+# - type: emote
+#   id: Growl
+#   name: chat-emote-name-growl
+#   category: Vocal
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: ["chat-emote-msg-growl"]
+#   chatTriggers:
+#   - growl
+#   - growls
+#   - growled
+#   - growling
+# Exodus-Vulpkanins-End
 
 # hand emotes
 - type: emote
@@ -264,7 +357,7 @@
     - claps
     - clapping
     - clapped
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - хлопает
     - хлопнул
     - хлопнула
@@ -272,7 +365,7 @@
     - хлопнул в ладоши
     - хлопнула в ладоши
     - апплодирует
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: ClapSingle
@@ -318,7 +411,7 @@
     - snaps its fingers
     - snapping fingers
     - snapped fingers
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - щелкает
     - щелкнул
     - щелкнула
@@ -331,7 +424,7 @@
     - щёлкает пальцами
     - щёлкнул пальцами
     - щёлкнула пальцами
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Thump
@@ -357,30 +450,13 @@
     - thumps her tail
     - thumps his tail
     - thumps its tail
-    # Exodus-Localization-Start
+    # RU-Localization-Start
     - стучит хвостом
-    - ударил хвостом по полу
-    - ударила хвостом по полу
-    - шлёпнул хвостом по полу
-    - шлёпнула хвостом по полу
-    - бьёт хвостом по полу
-    - стегнул хвостом по полу
-    - стегнула хвостом по полу
-    - хлопнул хвостом
-    - хлопнула хвостом
-    - хлестнул хвостом
-    - хлестнула хвостом
-    - шлепнул хвостом по полу
-    - шлепнула хвостом по полу
     - стукнул хвостом
     - стукнула хвостом
-    - резко ударил хвостом
-    - резко ударила хвостом
-    - смахнул хвостом по полу
-    - смахнула хвостом по полу
     - стукнул своим хвостом
     - стукнула своим хвостом
-    # Exodus-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Salute
@@ -397,12 +473,12 @@
   chatTriggers:
     - salute
     - salutes
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - салютует
     - отдаёт честь
     - отдал честь
     - отдала честь
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Gasp
@@ -434,6 +510,12 @@
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
+  id: ScurretDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  chatMessages: ["chat-emote-msg-deathgasp-scurret"]
+
+- type: emote
   id: Buzz
   name: chat-emote-name-buzz
   category: Vocal
@@ -450,11 +532,11 @@
     - buzz
     - buzzed
     - buzzes
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - жужжит
     - зажужжал
     - зажужжала
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Weh
@@ -489,9 +571,9 @@
     - chirps
     - chirped
     - chirping
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - чирикает
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 # Machine Emotes
 - type: emote
@@ -511,9 +593,9 @@
     - beeps
     - beeped
     - beeping
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - бип
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Chime
@@ -532,9 +614,9 @@
     - chimes
     - chimed
     - chiming
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - дзынь
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Buzz-Two
@@ -559,14 +641,14 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - бипбуп
     - бип буп
     - бип-буп
     - бипбип
     - бип бип
     - бип-бип
-    # Corvax-Localization-End
+    # RU-Localization-End
 
 - type: emote
   id: Ping
@@ -585,6 +667,6 @@
     - pings
     - pinged
     - pinging
-    # Corvax-Localization-Start
+    # RU-Localization-Start
     - пинг
-    # Corvax-Localization-End
+    # RU-Localization-End

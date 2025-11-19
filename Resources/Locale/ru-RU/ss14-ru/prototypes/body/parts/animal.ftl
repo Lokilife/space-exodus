@@ -10,5 +10,5 @@ ent-TorsoAnimal = туловище животного
     .desc = { ent-PartAnimal.desc }
 ent-LeftHandSmartCorgi = рука корги
     .desc = { ent-PartAnimal.desc }
-ent-RightHandSmartCorgi = { ent-LeftHandSmartCorgi }
+ent-RightHandSmartCorgi = рука корги
     .desc = { ent-PartAnimal.desc }

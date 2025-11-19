@@ -916,12 +916,12 @@
     - WrappedParcelClothingEyesGlassesGar
 
 - type: loadout
-  id: LoadoutClothingNeckHeadphones
+  id: LoadoutClothingMultipleHeadphones
   groupBy: "Neck"
-  dummyEntity: LoadoutDummyClothingNeckHeadphones
+  dummyEntity: LoadoutDummyClothingMultipleHeadphones
   storage:
     back:
-    - WrappedParcelClothingNeckHeadphones
+    - WrappedParcelClothingMultipleHeadphones
 
 - type: loadout
   id: LoadoutClothingUnderSocksCoder

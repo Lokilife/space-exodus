@@ -5,3 +5,11 @@
   frequency: 2654
   color: "#1700cb"
   longRange: true
+
+- type: radioChannel
+  id: Chitine
+  name: chat-radio-chitine
+  frequency: 98766
+  keycode: 'х'
+  color: "#556b2f"
+  localized: true

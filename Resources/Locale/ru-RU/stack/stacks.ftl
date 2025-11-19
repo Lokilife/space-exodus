@@ -129,6 +129,12 @@ stack-hv-cable =
         [few] кабеля
        *[other] кабелей
     }
+stack-explosive-cord =
+    { $amount ->
+        [1] детонационный шнур
+        [few] детонационных шнура
+       *[other] детонационных шнуров
+    }
 stack-wood-plank =
     { $amount ->
         [1] доску
@@ -276,9 +282,7 @@ stack-brutepack = набор от ушибов
 stack-bloodpack = пакет крови
 stack-medicated-suture = медицинская нить
 stack-regenerative-mesh = регенеративная сеть
-stack-capacitor = конденсатор
-stack-micro-manipulator = манипулятор
-stack-matter-bin = ёмкость материи
+stack-micro-manipulator = модульная машинная часть
 stack-pancake = блинчик
 stack-blueberry-pancake = блинчик с черникой
 stack-chocolate-chip-pancake = блинчик с шоколадной крошкой
@@ -312,6 +316,7 @@ stack-white-steel-vertical-pavement = белая стальная вертика
 stack-steel-dark-checker-tile = тёмная стальная плитка шашечками
 stack-steel-light-checker-tile = светлая стальная плитка шашечками
 stack-steel-tile = стальная плитка
+stack-techmaint-floor-dark = тёмная техническая плитка
 stack-wood-floor = деревянный пол
 stack-techmaint-floor = технический пол
 stack-freezer-tile = плитка морозильника
@@ -336,7 +341,7 @@ stack-eighties-floor-tile = пол восьмидесятых
 stack-blue-arcade-tile = синий пол аркады
 stack-red-arcade-tile = красный пол аркады
 stack-red-carpet-tile = красный ковёр
-stack-block-carpet-tile = чёрный ковёр
+stack-black-carpet-tile = чёрный ковёр
 stack-blue-carpet-tile = синий ковёр
 stack-green-carpet-tile = зелёный ковёр
 stack-orange-carpet-tile = оранжевый ковёр
@@ -380,10 +385,23 @@ stack-steel-maint-floor = стальной технический пол
 stack-grating-maint-floor = решётчатый технический пол
 stack-web-tile = паутинный пол
 stack-astro-grass-floor = астро-трава
+stack-dark-astro-grass-floor = тёмная астро-трава
+stack-light-astro-grass-floor = светлая астро-трава
 stack-mowed-astro-grass-floor = астро-газон
 stack-jungle-astro-grass-floor = астро-трава джунглей
 stack-astro-ice-floor = астро-лёд
 stack-astro-snow-floor = астро-снег
+stack-xeno-floor = ксенопол
+stack-xeno-steel = стальной ксенопол
+stack-xeno-steel-corner = стальной угловой ксенопол
+stack-desert-astro-sand-floor = пустынный астро-песок
+stack-xeno-maint = технический ксенопол
+stack-dark-squiggly = тёмная волнистая стальная плитка
 stack-large-wood-floor = большой деревянный пол
+stack-xenoborg = ксеноборг-плитка
 stack-red-circuit-floor = плитка красных микросхем
 stack-asteroid-astro-sand-floor = астро-песок астероида
+stack-white-marble-floor = белый мраморный пол
+stack-dark-marble-floor = чёрный мраморный пол
+stack-plasma-marble-floor = плазменный мраморный пол
+stack-uranium-marble-floor = урановый мраморный пол

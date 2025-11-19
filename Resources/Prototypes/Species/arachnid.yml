@@ -10,8 +10,8 @@
   skinColoration: Hues
   maleFirstNames: NamesArachnidFirst
   femaleFirstNames: NamesArachnidFirst
-  maleLastNames: NamesArachnidLast # Corvax-LastnameGender
-  femaleLastNames: NamesArachnidLast # Corvax-LastnameGender
+  maleLastNames: NamesArachnidLast # RU-Localization
+  femaleLastNames: NamesArachnidLast # RU-Localization
   sexes:
   - Unsexed
 

@@ -1,1 +1,1 @@
-flash-protection = Защищает от [color=lightblue]вспышек[/color].
+flash-protection = Обеспечивает защиту от [color=lightblue]ярких вспышек[/color].

@@ -1,4 +1,5 @@
 using Content.Server.Speech.Components;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
@@ -8,7 +9,7 @@ namespace Content.Server.Speech.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
 
         private static readonly IReadOnlyList<string> Barks = new List<string>{
-            " Гав!", " ГАВ", " вуф-вуф"  // Corvax-Localization
+            " Гав!", " ГАВ", " вуф-вуф"  // RU-Localization
         }.AsReadOnly();
 
         private static readonly IReadOnlyDictionary<string, string> SpecialWords = new Dictionary<string, string>()
@@ -17,12 +18,12 @@ namespace Content.Server.Speech.EntitySystems
             { "Ah", "Arf" },
             { "oh", "oof" },
             { "Oh", "Oof" },
-            //Corvax-Localization-Start
+            // RU-Localization-Start
             { "га", "гаф" },
             { "Га", "Гаф" },
             { "угу", "вуф" },
             { "Угу", "Вуф" },
-            //Corvax-Localization-End
+            // RU-Localization-End
         };
 
         public override void Initialize()
@@ -38,10 +39,10 @@ namespace Content.Server.Speech.EntitySystems
             }
 
             return message.Replace("!", _random.Pick(Barks))
-                //Corvax-Localization-Start
+                // RU-Localization-Start
                 .Replace("l", "r").Replace("L", "R")
                 .Replace("л", "р").Replace("Л", "Р");
-                //Corvax-Localization-End
+                // RU-Localization-End
         }
 
         private void OnAccent(EntityUid uid, BarkAccentComponent component, AccentGetEvent args)

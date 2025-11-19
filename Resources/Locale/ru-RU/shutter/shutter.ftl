@@ -1,1 +1,1 @@
-shutter-rattle = *ширх ширх*
+shutter-rattle = *гряк-гряк*

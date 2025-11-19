@@ -665,25 +665,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("player_id");
 
-                    // Exodus-Discord-Start
-                    b.Property<ulong?>("DiscordId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("discord_id");
-
-                    b.Property<string>("DiscordVerificationCode")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("discord_verification_code");
-                    // Exodus-Discord-End
-
                     b.Property<DateTime>("FirstSeenTime")
                         .HasColumnType("TEXT")
                         .HasColumnName("first_seen_time");
-
-                    // Exodus-Sponsorship-Start
-                    b.Property<bool>("IsPremium")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("is_premium");
-                    // Exodus-Sponsorship-End
 
                     b.Property<DateTime?>("LastReadRules")
                         .HasColumnType("TEXT")
@@ -706,10 +690,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("last_seen_user_name");
-
-                    b.Property<string>("PremiumOOCColor")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("premium_ooc_color");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT")
@@ -812,13 +792,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<byte[]>("Markings")
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
-
-                    // Exodus-Mindset-Start
-                    b.Property<string>("Mindset")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("mindset");
-                    // Exodus-Mindset-End
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("INTEGER")

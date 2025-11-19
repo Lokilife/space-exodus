@@ -190,13 +190,7 @@
       ]
     },
     {
-      "name": "emergency_open_unlit",
-      "delays": [
-        [
-            1.2,
-            1.2
-        ]
-      ]
+      "name": "emergency_open_unlit"
     }
   ]
 }

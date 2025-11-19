@@ -194,7 +194,6 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
-        Task<PlayerRecord?> GetPlayerRecordByDiscordId(ulong id, CancellationToken cancel = default); // Exodus-Discord
         #endregion
 
         #region Connection Logs
@@ -276,27 +275,6 @@ namespace Content.Server.Database
         Task RemoveFromBlacklistAsync(NetUserId player);
 
         #endregion
-        // Exodus-Discord-Start
-        #region Discord
-
-        Task<string?> GenerateDiscordVerificationCode(NetUserId player);
-
-        Task<Guid?> VerifyDiscordVerificationCode(string code);
-
-        Task<bool> LinkDiscord(NetUserId player, ulong discordId);
-
-        #endregion
-        // Exodus-Discord-End
-
-        // Exodus-Sponsorship-Start
-        #region Sponsorship
-
-        Task<bool> PromoteSponsor(NetUserId player);
-        Task<bool> UnpromoteSponsor(NetUserId player);
-        Task SetPremiumOOCColor(NetUserId player, string color);
-
-        #endregion
-        // Exodus-Sponsorship-End
 
         #region Uploaded Resources Logs
 
@@ -680,14 +658,6 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
         }
 
-        // Exodus-Discord-Start
-        public Task<PlayerRecord?> GetPlayerRecordByDiscordId(ulong id, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetPlayerRecordByDiscordId(id, cancel));
-        }
-        // Exodus-Discord-End
-
         public Task<int> AddConnectionLogAsync(
             NetUserId userId,
             string userName,
@@ -862,45 +832,6 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveFromBlacklistAsync(player));
         }
-
-        // Exodus-Discord-Start
-        public Task<string?> GenerateDiscordVerificationCode(NetUserId player)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.GenerateDiscordVerificationCode(player));
-        }
-
-        public Task<Guid?> VerifyDiscordVerificationCode(string code)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.VerifyDiscordVerificationCode(code));
-        }
-
-        public Task<bool> LinkDiscord(NetUserId player, ulong discordId)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.LinkDiscord(player, discordId));
-        }
-        // Exodus-Discord-End
-        // Exodus-Sponsorship-Start
-        public Task<bool> PromoteSponsor(NetUserId player)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.PromoteSponsor(player));
-        }
-
-        public Task<bool> UnpromoteSponsor(NetUserId player)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.UnpromoteSponsor(player));
-        }
-
-        public Task SetPremiumOOCColor(NetUserId player, string color)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.SetPremiumOOCColor(player, color));
-        }
-        // Exodus-Sponsorship-End
 
         public Task AddUploadedResourceLogAsync(NetUserId user, DateTimeOffset date, string path, byte[] data)
         {

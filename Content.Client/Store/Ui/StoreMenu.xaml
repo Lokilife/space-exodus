@@ -21,7 +21,7 @@
                     Name="RefundButton"
                     MinWidth="64"
                     HorizontalAlignment="Right"
-                    Text="{Loc 'store-ui-default-refund-text'}" /> <!--Exodus Locale-->
+                    Text="{Loc 'store-ui-refund-text'}" />
             </BoxContainer>
             <LineEdit Name="SearchBar" Margin="4" PlaceHolder="{Loc object-tab-object-search}" HorizontalExpand="True"/> <!--Exodus Locale-->
                 <PanelContainer VerticalExpand="True">

@@ -1,12 +1,12 @@
 ## UI
 
 cargo-console-menu-title = Консоль заказа грузов
-cargo-console-menu-account-name-label = Имя аккаунта:{ " " }
+cargo-console-menu-account-name-label = Аккаунт:{ " " }
 cargo-console-menu-account-name-none-text = Нет
 cargo-console-menu-account-name-format = [bold][color={ $color }]{ $name }[/color][/bold] [font="Monospace"]\[{ $code }\][/font]
 cargo-console-menu-shuttle-name-label = Название шаттла:{ " " }
 cargo-console-menu-shuttle-name-none-text = Нет
-cargo-console-menu-points-label = Кредиты:{ " " }
+cargo-console-menu-points-label = Баланс:{ " " }
 cargo-console-menu-points-amount = ${ $amount }
 cargo-console-menu-shuttle-status-label = Статус шаттла:{ " " }
 cargo-console-menu-shuttle-status-away-text = Отбыл
@@ -19,7 +19,7 @@ cargo-console-menu-requests-label = Запросы
 cargo-console-menu-orders-label = Заказы
 cargo-console-menu-order-reason-description = Причина: { $reason }
 cargo-console-menu-populate-categories-all-text = Все
-cargo-console-menu-populate-orders-cargo-order-row-product-name-text = { $productName } (x{ $orderAmount }) от { $orderRequester }
+cargo-console-menu-populate-orders-cargo-order-row-product-name-text = { $productName } (x{ $orderAmount }) от { $orderRequester } со счёта [color={ $accountColor }]{ $account }[/color]
 cargo-console-menu-cargo-order-row-approve-button = Одобрить
 cargo-console-menu-cargo-order-row-cancel-button = Отменить
 cargo-console-menu-tab-title-orders = Заказы
@@ -78,11 +78,11 @@ cargo-funding-alloc-console-label-save-fail = [bold]Разделение выр�
     }{ $val }%)[/color]
 # Slip template
 cargo-acquisition-slip-body = [head=3]Детали актива[/head]
-    { "[bold]Продукт:[/bold]" } { $product }
+    { "[bold]Товар:[/bold]" } { $product }
     { "[bold]Описание:[/bold]" } { $description }
     { "[bold]Цена за единицу:[/bold" }] ${ $unit }
     { "[bold]Количество:[/bold]" } { $amount }
-    { "[bold]Цена:[/bold]" } ${ $cost }
+    { "[bold]Сумма:[/bold]" } ${ $cost }
     
     { "[head=3]Детали покупки[/head]" }
     { "[bold]Заказчик:[/bold]" } { $orderer }

@@ -1042,12 +1042,12 @@
     state: icon
 
 - type: entity
-  id: LoadoutDummyClothingNeckHeadphones
+  id: LoadoutDummyClothingMultipleHeadphones
   categories: [ HideSpawnMenu ]
   name: headphones
   components:
   - type: Sprite
-    sprite: Clothing/Neck/Misc/headphones.rsi
+    sprite: Clothing/Multiple/headphones.rsi
     state: icon
 
 - type: entity

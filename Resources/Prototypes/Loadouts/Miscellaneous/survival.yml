@@ -18,11 +18,9 @@
     - Human
     - Moth
     # - Reptilian # Exodus-ThickSyringes
-    #Corvax-Species-Start
     - Vulpkanin
-    #Corvax-Species-End
   # Exodus-Species-Start
-    - NewKidan
+    - Kidan
     - Felinid
   # Exodus-Species-End
 
@@ -82,6 +80,7 @@
     - Dwarf
     - Human
     - Reptilian
+    - Vulpkanin
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth

@@ -45,7 +45,7 @@
   effects:
   - !type:CreateGas
     gas: Tritium
-    multiplier: 1.5
+    moles: 1.5
 #Exodus ChemicalEffects end
   products:
     Arithrazine: 2
@@ -132,10 +132,10 @@
   effects:
   - !type:CreateGas
     gas: CarbonDioxide
-    multiplier: 5
+    moles: 5
   - !type:CreateGas
     gas: WaterVapor
-    multiplier: 5
+    moles: 5
 #Exodus ChemicalEffects end
   products:
     DexalinPlus: 3
@@ -244,7 +244,7 @@
   effects:
   - !type:CreateGas
     gas: Ammonia
-    multiplier: 3
+    moles: 3
 #Exodus ChemicalEffects end
   products:
     AmbuzolPlus: 10
@@ -577,8 +577,8 @@
       amount: 1
 #Exodus ChemicalEffects start
   effects:
-    - !type:EmpReactionEffect
-      rangePerUnit: 1
+    - !type:Emp
+      rangeModifier: 1
       maxRange: 6
       energyConsumption: 12500
       duration: 15
@@ -693,7 +693,7 @@
   effects:
   - !type:CreateGas
     gas: NitrousOxide
-    multiplier: 5
+    moles: 5
 #Exodus ChemicalEffects end
   products:
     Haloperidol: 5

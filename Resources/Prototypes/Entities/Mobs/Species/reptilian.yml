@@ -58,6 +58,7 @@
     - HeadTop
     - HeadSide
     # undergarmentBottom: UndergarmentBottomBoxersReptilian # Exodus-No-Need-For-Underwear-For-Race
+    # - Tail # Exodus | We don't have sprites with tails, uncomment when we will
   - type: Hunger
     baseDecayRate: 0.0333333333 # Exodus-ReptilianLore
   - type: Puller
@@ -112,11 +113,10 @@
         Heat : 1.5 #per second, scales with temperature & other constants
   - type: TemperatureSpeed
     thresholds:
-      301: 0.8
-      295: 0.6
-      285: 0.4
+      301: 0.9
+      295: 0.8
+      285: 0.7
   - type: Wagging
-  # Exodus-ThickSyringes-Start
   # Exodus-ReptilianLore-Start | Zessul Blood heals reptilians better
   - type: Bloodstream
     bloodReagent: ZessulBlood
@@ -139,21 +139,22 @@
     effects:
     - !type:Emote
       conditions:
-        - !type:Temperature
-          max: 283
+      - !type:TemperatureCondition
+        max: 283
       emote: Yawn
       showInChat: true
       probability: 0.2
     - !type:GenericStatusEffect
       conditions:
-        - !type:Temperature
-          max: 283
+      - !type:TemperatureCondition
+        max: 283
       key: Drowsiness
       component: Drowsiness
       time: 4
       type: Add
       refresh: false
   # Exodus-ReptilianLore-End
+  # Exodus-ThickSyringes-Start
   - type: InjectableSolution
     solution: chemicals
     whitelist:

@@ -5,7 +5,7 @@ using Content.Client.Gravity;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Standing; // Exodus-Crawling
+using Content.Shared.Standing;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -65,10 +65,8 @@ public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
         if (_mobState.IsIncapacitated(entity.Owner))
             return;
 
-        // Exodus-Crawling-Start
         if (TryComp<StandingStateComponent>(entity.Owner, out var standing) && !standing.Standing)
             return;
-        // Exodus-Crawling-End
 
         PlayWaddleAnimationUsing(
             (entity.Owner, entity.Comp),

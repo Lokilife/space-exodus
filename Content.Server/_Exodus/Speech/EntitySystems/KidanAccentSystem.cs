@@ -1,14 +1,12 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Exodus.Speech.Components;
-using Content.Server.Speech;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 
 namespace Content.Server.Exodus.Speech.EntitySystems;
 
 public sealed class KidanAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-
     public override void Initialize()
     {
         base.Initialize();

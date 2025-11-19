@@ -1,12 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
-using Robust.Shared.Random;
+using Content.Shared.Speech;
+using Robust.Shared.Random; // RU-Localization
 
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class MothAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    [Dependency] private readonly IRobustRandom _random = default!; // RU-Localization
 
     private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
     private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
@@ -26,7 +27,7 @@ public sealed class MothAccentSystem : EntitySystem
         // buZZZ
         message = RegexUpperBuzz.Replace(message, "ZZZ");
 
-        // Corvax-Localization-Start
+        // RU-Localization-Start
         // ж => жжж
         message = Regex.Replace(
             message,
@@ -51,7 +52,7 @@ public sealed class MothAccentSystem : EntitySystem
             "З+",
             _random.Pick(new List<string>() { "ЗЗ", "ЗЗЗ" })
         );
-        // Corvax-Localization-End
+        // RU-Localization-End
 
         args.Message = message;
     }

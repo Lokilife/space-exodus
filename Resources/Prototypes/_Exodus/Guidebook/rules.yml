@@ -34,7 +34,7 @@
 
 - type: guideEntry
   id: ExodusRule23
-  name: "2.3. Отыгрыш особенностей, нерегулируемых игровыми механиками"
+  name: "2.3. Отыгрыш особенностей"
   priority: 4
   text: "/ServerInfo/Exodus/Guidebook/ServerRules/Rule23.xml"
 

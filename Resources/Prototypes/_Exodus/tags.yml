@@ -42,3 +42,9 @@
 
 - type: Tag
   id: CartridgePistolAlt
+
+- type: Tag
+  id: Nutribrick
+
+- type: Tag
+  id: MagazineMagnumSubMachineGun

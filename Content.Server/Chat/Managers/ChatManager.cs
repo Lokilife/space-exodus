@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server.Exodus.Sponsors; // Exodus-Sponsorship
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
@@ -45,10 +44,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Exodus-Sponsorship
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
-
-    public const string AllowedOOCSpecialCharacters = ".,:;-—–\"'!?`(){}[]<>\\/|#%^$~№&@*+="; // Exodus-ChatRestrictions
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -87,10 +83,10 @@ internal sealed partial class ChatManager : IChatManager
         DispatchServerAnnouncement(Loc.GetString(val ? "chat-manager-admin-ooc-chat-enabled-message" : "chat-manager-admin-ooc-chat-disabled-message"));
     }
 
-    public void DeleteMessagesBy(NetUserId uid)
-    {
-        if (!_players.TryGetValue(uid, out var user))
-            return;
+        public void DeleteMessagesBy(NetUserId uid)
+        {
+            if (!_players.TryGetValue(uid, out var user))
+                return;
 
         var msg = new MsgDeleteChatMessagesBy { Key = user.Key, Entities = user.Entities };
         _netManager.ServerSendToAll(msg);
@@ -247,30 +243,6 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
-        // Exodus-ChatRestrictions-Start
-        var specialCharsAmount = message.Count((ch) => !char.IsLetterOrDigit(ch) && !char.IsWhiteSpace(ch));
-
-        if (specialCharsAmount > 20)
-        {
-            var serverMessage = Loc.GetString("chat-manager-too-much-special-characters");
-            var wrappedServerMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(serverMessage)));
-
-            ChatMessageToOne(ChatChannel.Server, serverMessage, wrappedServerMessage, default, false, player.Channel, colorOverride: Color.Red);
-            _adminLogger.Add(LogType.Chat, LogImpact.High, $"{player:Player} tried to send message with too much special characters: {message}");
-            return;
-        }
-
-        if (message.Any(ch => !AllowedOOCSpecialCharacters.Contains(ch) && !char.IsLetterOrDigit(ch) && !char.IsWhiteSpace(ch)))
-        {
-            var serverMessage = Loc.GetString("chat-manager-restricted-special-characters");
-            var wrappedServerMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(serverMessage)));
-
-            ChatMessageToOne(ChatChannel.Server, serverMessage, wrappedServerMessage, default, false, player.Channel, colorOverride: Color.Red);
-            _adminLogger.Add(LogType.Chat, LogImpact.High, $"{player:Player} tried to send message with restricted special characters: {message}");
-            return;
-        }
-        // Exodus-ChatRestrictions-End
-
         switch (type)
         {
             case OOCChatType.OOC:
@@ -307,13 +279,10 @@ internal sealed partial class ChatManager : IChatManager
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;
         }
-        // Exodus-WeAreNotOfficials: Privelleges providen by officials should work only on official's servers
-        // Exodus-Sponsorship-Start
-        if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.OOCColor != null)
+        if (  _netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", sponsorData.OOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
-        // Exodus-Sponsorship-End
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

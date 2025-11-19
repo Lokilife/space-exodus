@@ -32,41 +32,6 @@
     - type: Loadout
       prototypes: [ BlueshieldOfficerGear ]
 
-# - type: entity
-#   id: RandomHumanoidSpawnerSpecicalOperationOfficer
-#   name: specical operation officer
-#   suffix: Centcomm
-#   components:
-#     - type: Sprite
-#       sprite: Corvax/Clothing/Neck/Cloaks/centcom_officer_black.rsi
-#       state: icon
-#     - type: RandomMetadata
-#       nameSegments:
-#         - NamesFirstMilitaryHighLeader
-#         - NamesLastMilitary
-#     - type: RandomHumanoidSpawner
-#       settings: SpecicalOperationOfficerSettings
-#     - type: AntagImmune
-
-# - type: randomHumanoidSettings
-#   id: SpecicalOperationOfficerSettings
-#   randomizeName: false
-#   speciesBlacklist:
-#     - Diona
-#   components:
-#     - type: MindShield
-#     - type: GhostRole
-#       name: ghost-role-information-Specical-Operation-Officer-name
-#       description: ghost-role-information-Specical-Operation-Officer-description
-#     - type: GhostTakeoverAvailable
-#     - type: Loadout
-#       prototypes: [ SpecicalOperationOfficerGear ]
-#     - type: RandomMetadata
-#       nameSegments:
-#         - NamesFirstMilitaryHighLeader
-#         - NamesLastMilitary
-#     - type: AntagImmune
-
 - type: randomHumanoidSettings
   id: DeathSquadOfficer
   speciesBlacklist:
@@ -150,10 +115,6 @@
       allowMovement: true
       allowSpeech: true
       makeSentient: true
-      requirements:
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 54000
       name: ghost-role-information-deathsquad-officer-name
       description: ghost-role-information-deathsquad-officer-description
       rules: ghost-role-information-deathsquad-officer-rules
@@ -194,13 +155,6 @@
       allowMovement: true
       allowSpeech: true
       makeSentient: true
-      requirements:
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 10800
-        - !type:DepartmentTimeRequirement
-          department: Command
-          time: 54000
       name: ghost-role-information-deathsquad-commander-name
       description: ghost-role-information-deathsquad-commander-description
       rules: ghost-role-information-deathsquad-commander-rules
@@ -235,13 +189,6 @@
       allowMovement: true
       allowSpeech: true
       makeSentient: true
-      requirements:
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 54000
-        - !type:DepartmentTimeRequirement
-          department: Medical
-          time: 36000
       name: ghost-role-information-deathsquad-specialist-name
       description: ghost-role-information-deathsquad-specialist-description
       rules: ghost-role-information-deathsquad-specialist-rules

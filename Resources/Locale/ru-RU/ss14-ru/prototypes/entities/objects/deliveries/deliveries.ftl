@@ -9,4 +9,4 @@ ent-DeliveryModifierPriority = { "" }
 ent-DeliveryModifierFragile = { "" }
     .desc = Компоненты, которые добавляются хрупким посылкам.
 ent-DeliveryModifierBomb = { "" }
-    .desc = Компоненты, которые добавляются взрывоопасным посылкам.
+    .desc = Компоненты, добавляемые, когда почта является бомбой.

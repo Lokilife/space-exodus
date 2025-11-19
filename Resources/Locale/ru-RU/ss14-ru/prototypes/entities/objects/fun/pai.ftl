@@ -1,13 +1,13 @@
 ent-PersonalAI = персональный ИИ
     .desc = Ваш электронный друг, с которым весело!
-# Corvax-HiddenDesc-Start
-ent-SyndicatePersonalAI = персональный ИИ
-    .desc = Новейшая модель вашего электронного друга! Теперь веселье засияет новыми красками!
-# Corvax-HiddenDesc-End
+ent-SyndicatePersonalAI = персональный ИИ Синдиката
+    .desc = Ваш электронный друг, созданный Синдикатом!
+ent-GoldenPersonalAI = золотой персональный ИИ
+    .desc = Ваш электронный друг, с которым весело! Специальное золотое издание!
 ent-PotatoAI = картофельный ИИ
     .desc = Это картофелина. Вы заставили её быть разумной, вы, монстр.
-ent-ActionPAIOpenShop = Каталог приложений
-    .desc = Install new software to assist your owner.
+ent-ActionPAIOpenShop = Каталог программ
+    .desc = Установите новое программное обеспечение, чтобы помогать вашему владельцу.
 ent-ActionPAIMassScanner = Сканер массы
     .desc = Откройте интерфейс сканера массы.
 ent-ActionPAIPlayMidi = Запустить MIDI

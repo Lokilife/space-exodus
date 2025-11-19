@@ -61,7 +61,6 @@ namespace Content.Server.Connection
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IEntityManager _entity = default!; // Exodus-Queue
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -135,20 +134,10 @@ namespace Content.Server.Connection
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
-            // Exodus-Refactor-Start: Rewrite player record creation on the first connection
+            var deny = await ShouldDeny(e);
+
             var addr = e.IP.Address;
             var userId = e.UserId;
-
-            var playerRecord = await _db.GetPlayerRecordByUserId(userId);
-
-            if (playerRecord == null)
-            {
-                await _db.CreatePlayerRecordAsync(userId, e.UserName, addr);
-                playerRecord = await _db.GetPlayerRecordByUserId(userId);
-            }
-
-            var deny = await ShouldDeny(e, playerRecord!);
-            // Exodus-Refactor-End
 
             var serverId = (await _serverDbEntry.ServerEntity).Id;
 
@@ -221,7 +210,7 @@ namespace Content.Server.Connection
          * TODO: Break this apart into is constituent steps.
          */
         private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
-            NetConnectingArgs e, PlayerRecord record) // Exodus-Refactor: Rewrite player record creation on the first connection
+            NetConnectingArgs e)
         {
             // Check if banned.
             var addr = e.IP.Address;
@@ -257,16 +246,18 @@ namespace Content.Server.Connection
 
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
 
-            // Corvax-Start: Allow privileged players bypass bunker
+            // Corvax-Queue-Start: Allow privileged players bypass bunker
             var isPrivileged = await HavePrivilegedJoin(e.UserId);
             if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !isPrivileged)
-            // Corvax-End
+            // Corvax-Queue-End
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
 
                 var minMinutesAge = _cfg.GetCVar(CCVars.PanicBunkerMinAccountAge);
-                var validAccountAge = record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0; // Exodus-Refactor
+                var record = await _db.GetPlayerRecordByUserId(userId);
+                var validAccountAge = record != null &&
+                                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
 
                 // Use the custom reason if it exists & they don't have the minimum account age
@@ -355,18 +346,6 @@ namespace Content.Server.Connection
                 }
             }
 
-            // Exodus-Discord-Start
-            if (_cfg.GetCVar(CCVars.DiscordVerificationEnabled) && !isPrivileged)
-            {
-                if (record.DiscordId == null)
-                {
-                    var code = await _db.GenerateDiscordVerificationCode(e.UserId);
-
-                    return (ConnectionDenyReason.NotVerified, Loc.GetString("discord-not-linked", ("code", code!)), null);
-                }
-            }
-
-            // Exodus-Discord-End
             // ALWAYS keep this at the end, to preserve the API limit.
             if (_cfg.GetCVar(CCVars.GameIPIntelEnabled) && adminData == null)
             {
@@ -406,12 +385,10 @@ namespace Content.Server.Connection
         public async Task<bool> HavePrivilegedJoin(NetUserId userId)
         {
             var isAdmin = await _db.GetAdminDataForAsync(userId) != null;
-            var playerRecord = await _db.GetPlayerRecordByUserId(userId);
-            var isPremium = playerRecord != null && playerRecord.IsPremium;
-            var wasInGame = _entity.TrySystem<GameTicker>(out var ticker) &&
+            var wasInGame = _entityManager.TrySystem<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            return isAdmin || wasInGame || isPremium;
+            return isAdmin || wasInGame;
         }
         // Exodus-Queue-End
     }

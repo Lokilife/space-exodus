@@ -2,11 +2,14 @@
 using Content.Server.Exodus.EntityEffects.Components;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Mobs.Components;
+using Content.Shared.EntityEffects;
 
 namespace Content.Server.Exodus.EntityEffects;
 
 public sealed partial class EntityEffectsOnCollideSystem : EntitySystem
 {
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,10 +29,10 @@ public sealed partial class EntityEffectsOnCollideSystem : EntitySystem
 
         foreach (var effect in comp.Effects)
         {
-            effect.Effect(new(otherUid, EntityManager));
+            _entityEffects.TryApplyEffect(otherUid, effect);
         }
 
-        if (comp.DeleteAfterCollide && uid != null)
+        if (comp.DeleteAfterCollide)
             QueueDel(uid);
     }
 }

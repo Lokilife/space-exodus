@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
-using Robust.Shared.Random;
+using Content.Shared.Speech;
+using Robust.Shared.Random; // RU-Localization
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -12,7 +13,7 @@ public sealed class LizardAccentSystem : EntitySystem
     private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
     private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
 
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    [Dependency] private readonly IRobustRandom _random = default!; // RU-Localization
 
     public override void Initialize()
     {
@@ -35,7 +36,7 @@ public sealed class LizardAccentSystem : EntitySystem
         // eckS
         message = RegexUpperEndX.Replace(message, "ECKS$1");
 
-        // Corvax-Localization-Start
+        // RU-Localization-Start
         // c => ссс
         message = Regex.Replace(
             message,
@@ -84,7 +85,7 @@ public sealed class LizardAccentSystem : EntitySystem
             "Ч+",
             _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
         );
-        // Corvax-Localization-End
+        // RU-Localization-End
         args.Message = message;
     }
 }
