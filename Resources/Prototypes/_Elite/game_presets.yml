@@ -1,0 +1,11 @@
+# used for development purposes
+- type: gamePreset
+  id: EliteEmpty
+  alias:
+  - Empty
+  - empty
+  name: elite-empty-title
+  showInVote: false
+  description: elite-empty-description
+  rules:
+  - EliteEmptyEventScheduler
