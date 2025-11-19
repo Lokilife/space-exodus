@@ -389,8 +389,8 @@
       - type: Anomaly
         deleteEntity: false
         maxPointsPerSecond: 100
-        corePrototype: AnomalyCoreRock
-        coreInertPrototype: AnomalyCoreRockInert
+        corePrototype: RandomAnomalyCoreRock # Exodus-AnomalyCores
+        coreInertPrototype: RandomAnomalyCoreRockInert # Exodus-AnomalyCores
         supercriticalSoundAtAnimationStart:
           collection: AnomalyRockSupercritical
       - type: InnerBodyAnomaly

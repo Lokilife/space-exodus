@@ -39,11 +39,14 @@
   name: super cloaking device
   description: A device that allows Xenoborgs to go truly invisible.
   components:
+# Exodus-RefactorStealthSystem-Begin
   - type: ComponentToggler
     parent: true
     components:
-    - type: Stealth
-      minVisibility: -1
-      lastVisibility: -1
+    - type: InstantStealth
+      stealth:
+        minVisibility: -1
+        lastVisibility: -1
+# Exodus-RefactorStealthSystem-End
   - type: PowerCellDraw
     drawRate: 12 # 30 seconds

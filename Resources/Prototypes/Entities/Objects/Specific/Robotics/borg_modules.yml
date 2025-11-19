@@ -1281,19 +1281,19 @@
     - item: CyborgEnergySword
     - item: PinpointerSyndicateNuclear
 # Corvax-HiddenDesc-Start
-    - type: HiddenDescription
-      entries:
-      - label: corvax-hidden-desc-BorgModuleEsword-syndicate
-        whitelistMind:
-          mindRoles:
-            - TraitorRole
-            - NukeopsRole
-      - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
-        jobRequired:
-          - ResearchAssistant
-          - ResearchDirector
-          - Scientist
-          - Borg
+  - type: HiddenDescription
+    entries:
+    - label: corvax-hidden-desc-BorgModuleEsword-syndicate
+      whitelistMind:
+        mindRoles:
+          - TraitorRole
+          - NukeopsRole
+    - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
 # Corvax-HiddenDesc-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-esword-module }
@@ -1313,19 +1313,19 @@
     - item: CyborgEnergySwordDouble
     - item: PinpointerSyndicateNuclear
 # Corvax-HiddenDesc-Start
-    - type: HiddenDescription
-      entries:
-      - label: corvax-hidden-desc-BorgModuleDoubleEsword-syndicate
-        whitelistMind:
-          mindRoles:
-            - TraitorRole
-            - NukeopsRole
-      - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
-        jobRequired:
-          - ResearchAssistant
-          - ResearchDirector
-          - Scientist
-          - Borg
+  - type: HiddenDescription
+    entries:
+    - label: corvax-hidden-desc-BorgModuleDoubleEsword-syndicate
+      whitelistMind:
+        mindRoles:
+          - TraitorRole
+          - NukeopsRole
+    - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
 # Corvax-HiddenDesc-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-desword-module }
@@ -1345,19 +1345,19 @@
     - item: WeaponLightMachineGunL6C
     - item: PinpointerSyndicateNuclear
 # Corvax-HiddenDesc-Start
-    - type: HiddenDescription
-      entries:
-      - label: corvax-hidden-desc-BorgModuleL6C-syndicate
-        whitelistMind:
-          mindRoles:
-          - TraitorRole
-          - NukeopsRole
-      - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
-        jobRequired:
-          - ResearchAssistant
-          - ResearchDirector
-          - Scientist
-          - Borg
+  - type: HiddenDescription
+    entries:
+    - label: corvax-hidden-desc-BorgModuleL6C-syndicate
+      whitelistMind:
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
+    - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
 # Corvax-HiddenDesc-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
@@ -1377,19 +1377,19 @@
     - item: WeaponSubMachineGunC20rROW
     - item: PinpointerSyndicateNuclear
 # Corvax-HiddenDesc-Start
-    - type: HiddenDescription
-      entries:
-      - label: corvax-hidden-desc-BorgModuleC20r-syndicate
-        whitelistMind:
-          mindRoles:
-          - TraitorRole
-          - NukeopsRole
-      - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
-        jobRequired:
-          - ResearchAssistant
-          - ResearchDirector
-          - Scientist
-          - Borg
+  - type: HiddenDescription
+    entries:
+    - label: corvax-hidden-desc-BorgModuleC20r-syndicate
+      whitelistMind:
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
+    - label: corvax-hidden-desc-BorgModuleSyndicateWeapon-research
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
 # Corvax-HiddenDesc-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module }

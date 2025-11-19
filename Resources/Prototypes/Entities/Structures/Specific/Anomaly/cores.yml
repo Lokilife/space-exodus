@@ -118,7 +118,8 @@
     triggerOnce: true
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
-      volume: 5
+      params:
+        volume: 5
   - type: TwoStageTrigger
     triggerDelay: 10.0
     components:
@@ -216,7 +217,7 @@
     color: "#cb5b7e"
     castShadows: false
 
-#Exodus-AnomalyCore-Begin
+# Exodus-AnomalyCore-Begin
 #- type: entity
 #  parent: BaseAnomalyCore
 #  id: AnomalyCoreRock
@@ -229,6 +230,29 @@
 #    energy: 3.5
 #    color: "#5ca8cb"
 #    castShadows: false
+
+- type: entity
+  id: RandomAnomalyCoreRock
+  name: random rock anomaly core
+  suffix: Rock
+  parent: MarkerBase
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Specific/Anomalies/Cores/rock_core.rsi
+        state: core
+  - type: RandomSpawner
+    prototypes:
+      - AnomalyCoreRockUranium
+      - AnomalyCoreRockQuartz
+      - AnomalyCoreRockSilver
+      - AnomalyCoreRockGold
+      - AnomalyCoreRockIron
+      - AnomalyCoreRockCoal
+# Exodus-AnomalyCore-End
 
 - type: entity
   parent: BaseAnomalyCore
@@ -523,7 +547,7 @@
     frictionNoInput: 0.05
   - type: Slippery
     slipData:
-      paralyzeTime: 5.0
+      knockdownTime: 5.0
       launchForwardsMultiplier: 3.0
   - type: Residue
     residueAdjective: residue-slippery
@@ -816,7 +840,8 @@
     triggerOnce: true
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
-      volume: 5
+      params:
+        volume: 5
   - type: TwoStageTrigger
     triggerDelay: 5.0
     components:
@@ -914,7 +939,7 @@
     color: "#cb5b7e"
     castShadows: false
 
-#Exodus-AnomalyCore-Begin
+# Exodus-AnomalyCore-Begin
 #- type: entity
 #  parent: BaseAnomalyInertCore
 #  id: AnomalyCoreRockInert
@@ -927,7 +952,28 @@
 #    energy: 3.5
 #    color: "#5ca8cb"
 #    castShadows: false
-#Exodus-AnomalyCore-End
+- type: entity
+  id: RandomAnomalyCoreRockInert
+  name: random rock anomaly core
+  suffix: Rock, Inert
+  parent: MarkerBase
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Specific/Anomalies/Cores/rock_core.rsi
+        state: core
+  - type: RandomSpawner
+    prototypes:
+      - AnomalyCoreRockUraniumInert
+      - AnomalyCoreRockQuartzInert
+      - AnomalyCoreRockSilverInert
+      - AnomalyCoreRockGoldInert
+      - AnomalyCoreRockIronInert
+      - AnomalyCoreRockCoalInert
+# Exodus-AnomalyCore-End
 
 - type: entity
   parent: BaseAnomalyInertCore
@@ -1005,7 +1051,7 @@
     frictionNoInput: 0.05
   - type: Slippery
     slipData:
-      paralyzeTime: 5.0
+      knockdownTime: 5.0
       launchForwardsMultiplier: 3.0
   - type: Residue
     residueAdjective: residue-slippery
